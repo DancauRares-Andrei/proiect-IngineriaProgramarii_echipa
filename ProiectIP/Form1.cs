@@ -16,7 +16,6 @@ namespace ProiectIP
 {
     public partial class Form1 : Form
     {
-        private string _currentDirectory;
         private Context _context;
         public Form1()
         {
@@ -72,7 +71,6 @@ namespace ProiectIP
                 openFileDialog1.Filter = "Playlist(*.txt)|*.txt";
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                     return;
-                _currentDirectory = Path.GetDirectoryName(openFileDialog1.FileName);
                 if (_context != null && _context.Controls.Count > 2)
                 {
                     List<string> melodii = new List<string>();
@@ -81,9 +79,19 @@ namespace ProiectIP
                     sr.Close();
                     for (int i = 0; i < lvls.Length; i++)
                         melodii.Add(lvls[i]);
-                    ((ListBox)_context.Controls[1]).DataSource = melodii;
+                    // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
+                    var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
+
+                    // Setarea DataSource-ului pentru ListBox
+                    ((ListBox)_context.Controls[1]).DataSource = files;
+
+                    // Setarea DisplayMember-ului si ValueMember-ului pentru ListBox
+                    ((ListBox)_context.Controls[1]).DisplayMember = "FileName";
+                    ((ListBox)_context.Controls[1]).ValueMember = "Path";
+
+
                     ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBox1_SelectedIndexChanged;
-                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = _currentDirectory + "/" + ((ListBox)_context.Controls[1]).Items[0].ToString();
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                 }
                 else
                 {
@@ -99,16 +107,26 @@ namespace ProiectIP
                     _context.Controls[0].Size = new System.Drawing.Size(498, 368);
                     List<string> melodii = new List<string>();
                     StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog1.FileName));
-                    string[] lvls = sr.ReadToEnd().Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     sr.Close();
                     for (int i = 0; i < lvls.Length; i++)
                         melodii.Add(lvls[i]);
                     _context.Controls[1].Location = new System.Drawing.Point(531, 27);
                     _context.Controls[1].Size = new System.Drawing.Size(200, 368);
                     ((ListBox)_context.Controls[1]).HorizontalScrollbar = true;
-                    ((ListBox)_context.Controls[1]).DataSource = melodii;
+                    // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
+                    var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
+
+                    // Setarea DataSource-ului pentru ListBox
+                    ((ListBox)_context.Controls[1]).DataSource = files;
+
+                    // Setarea DisplayMember-ului si ValueMember-ului pentru ListBox
+                    ((ListBox)_context.Controls[1]).DisplayMember = "FileName";
+                    ((ListBox)_context.Controls[1]).ValueMember = "Path";
+
+
                     ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBox1_SelectedIndexChanged;
-                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = _currentDirectory + "/" + ((ListBox)_context.Controls[1]).Items[0].ToString();
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).PlayStateChange += axWindowsMediaPlayer1_PlayStateChange;
                     _context.Controls[2].Text = "Random";
                     _context.Controls[2].Size = new System.Drawing.Size(66, 17);
@@ -128,7 +146,7 @@ namespace ProiectIP
                 int selectedIndex = listBox.SelectedIndex;
                 if (listBox.SelectedIndex > -1)
                 {
-                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = _currentDirectory + "/" + listBox.Items[selectedIndex].ToString();
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)listBox.SelectedItem).Path;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.play();
                 }
             }

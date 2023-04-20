@@ -41,10 +41,6 @@ namespace ProiectIP
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
