@@ -1,0 +1,8 @@
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\bin\Debug\StateChange.dll
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\bin\Debug\StateChange.pdb
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.csproj.CoreCompileInputs.cache
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.dll
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.pdb
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.csproj.CopyComplete
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.csproj.AssemblyReference.cache
