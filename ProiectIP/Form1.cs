@@ -30,25 +30,14 @@ namespace ProiectIP
                 openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context != null)
+                if (_context != null && _context.Controls.Count<2)
                 {
-                    if (_context.Controls.Count < 2)
-                        ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog1.FileName);
-                    else
-                    {
-                        ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                        _context = new Context(new SingleFileState(), Path.GetFullPath(openFileDialog1.FileName));
-                        _context.Request();
-                        groupBox1.Controls.Add(_context.Controls[0]);
-                        _context.Controls[0].CreateControl();
-                        ((AxWindowsMediaPlayer)_context.Controls[0]).settings.setMode("loop", true);
-                        _context.Controls[0].Location = new System.Drawing.Point(6, 27);
-                        _context.Controls[0].Size = new System.Drawing.Size(498, 368);
-                        ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog1.FileName);
-                    }
+                   ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog1.FileName);
                 }
                 else
                 {
+                    if(_context!=null)
+                        ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context = new Context(new SingleFileState(), Path.GetFullPath(openFileDialog1.FileName));
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
@@ -116,6 +105,7 @@ namespace ProiectIP
                         melodii.Add(lvls[i]);
                     _context.Controls[1].Location = new System.Drawing.Point(531, 27);
                     _context.Controls[1].Size = new System.Drawing.Size(200, 368);
+                    ((ListBox)_context.Controls[1]).HorizontalScrollbar = true;
                     ((ListBox)_context.Controls[1]).DataSource = melodii;
                     ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBox1_SelectedIndexChanged;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = _currentDirectory + "/" + ((ListBox)_context.Controls[1]).Items[0].ToString();
