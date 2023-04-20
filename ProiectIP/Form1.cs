@@ -174,23 +174,28 @@ namespace ProiectIP
             try
             {
                 timer1.Enabled = false;
-                if (((CheckBox)_context.Controls[2]).Checked)
-                {
-                    Random rnd = new Random();
-                    int nowPlayIndex = rnd.Next(((ListBox)_context.Controls[1]).Items.Count);
-                    while (nowPlayIndex == ((ListBox)_context.Controls[1]).SelectedIndex)
-                        nowPlayIndex = rnd.Next(((ListBox)_context.Controls[1]).Items.Count);
-                    ((ListBox)_context.Controls[1]).SelectedIndex = nowPlayIndex;
-                }
+                if(((ListBox)_context.Controls[1]).Items.Count==1)
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                 else
                 {
-                    if (((ListBox)_context.Controls[1]).SelectedIndex != ((ListBox)_context.Controls[1]).Items.Count - 1)
+                    if (((CheckBox)_context.Controls[2]).Checked)
                     {
-                        ((ListBox)_context.Controls[1]).SelectedIndex = ((ListBox)_context.Controls[1]).SelectedIndex + 1;
+                        Random rnd = new Random();
+                        int nowPlayIndex = rnd.Next(((ListBox)_context.Controls[1]).Items.Count);
+                        while (nowPlayIndex == ((ListBox)_context.Controls[1]).SelectedIndex)
+                            nowPlayIndex = rnd.Next(((ListBox)_context.Controls[1]).Items.Count);
+                        ((ListBox)_context.Controls[1]).SelectedIndex = nowPlayIndex;
                     }
                     else
                     {
-                        ((ListBox)_context.Controls[1]).SelectedIndex = 0;
+                        if (((ListBox)_context.Controls[1]).SelectedIndex != ((ListBox)_context.Controls[1]).Items.Count - 1)
+                        {
+                            ((ListBox)_context.Controls[1]).SelectedIndex = ((ListBox)_context.Controls[1]).SelectedIndex + 1;
+                        }
+                        else
+                        {
+                            ((ListBox)_context.Controls[1]).SelectedIndex = 0;
+                        }
                     }
                 }
             }catch(Exception ex)
