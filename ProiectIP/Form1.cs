@@ -25,7 +25,6 @@ namespace ProiectIP
         private void deschidereFisierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try {
-                groupBox1.Controls.Clear();
                 openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                     return;
@@ -35,7 +34,8 @@ namespace ProiectIP
                 }
                 else
                 {
-                    if(_context!=null && _context.Controls.Count!=4)
+                    groupBox1.Controls.Clear();
+                    if (_context!=null && _context.Controls.Count!=4)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context = new Context(new SingleFileState());
                     _context.Request();
@@ -235,22 +235,36 @@ namespace ProiectIP
 
         private void SaveButtonClick(object sender, EventArgs e)
         {
-            saveFileDialog1.Filter = "Playlist(*.txt)|*.txt";
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                System.IO.File.WriteAllText(saveFileDialog1.FileName, ((TextBox)_context.Controls[2]).Text);
-                groupBox1.Controls.Clear();
-                _context.Controls.Clear();
-                _context = null;
+                saveFileDialog1.Filter = "Playlist(*.txt)|*.txt";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    System.IO.File.WriteAllText(saveFileDialog1.FileName, ((TextBox)_context.Controls[2]).Text);
+                    groupBox1.Controls.Clear();
+                    _context.Controls.Clear();
+                    _context = null;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void AddButtonClick(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
-                return;
-            _context.Controls[2].Text += Path.GetFullPath(openFileDialog1.FileName)+"\r\n";
+            try
+            {
+                openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
+                if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                    return;
+                _context.Controls[2].Text += Path.GetFullPath(openFileDialog1.FileName) + "\r\n";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
