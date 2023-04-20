@@ -12,11 +12,9 @@ namespace StateChange
     {
         public List<Control> Controls { get; set; }
         public State State { get; set; }
-        public string Fisier { get; set; }
-        public Context(State state,string fisier)
+        public Context(State state)
         {
             State = state;
-            Fisier = fisier;
             Controls = new List<Control>();
         }
 

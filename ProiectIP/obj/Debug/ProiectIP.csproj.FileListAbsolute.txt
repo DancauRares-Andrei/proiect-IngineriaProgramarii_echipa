@@ -18,3 +18,4 @@ C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.cspro
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.csproj.CopyComplete
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.exe
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.pdb
+C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.csproj.AssemblyReference.cache

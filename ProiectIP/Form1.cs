@@ -35,9 +35,9 @@ namespace ProiectIP
                 }
                 else
                 {
-                    if(_context!=null)
+                    if(_context!=null && _context.Controls.Count!=4)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    _context = new Context(new SingleFileState(), Path.GetFullPath(openFileDialog1.FileName));
+                    _context = new Context(new SingleFileState());
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
                     _context.Controls[0].CreateControl();
@@ -71,11 +71,11 @@ namespace ProiectIP
                 openFileDialog1.Filter = "Playlist(*.txt)|*.txt";
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context != null && _context.Controls.Count > 2)
+                if (_context != null && _context.Controls.Count ==3)
                 {
                     List<string> melodii = new List<string>();
                     StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog1.FileName));
-                    string[] lvls = sr.ReadToEnd().Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     sr.Close();
                     for (int i = 0; i < lvls.Length; i++)
                         melodii.Add(lvls[i]);
@@ -96,9 +96,9 @@ namespace ProiectIP
                 else
                 {
                     groupBox1.Controls.Clear();
-                    if (_context != null)
+                    if (_context != null && _context.Controls.Count != 4)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    _context = new Context(new PlaylistState(), Path.GetFullPath(openFileDialog1.FileName));
+                    _context = new Context(new PlaylistState());
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
                     groupBox1.Controls.Add(_context.Controls[1]);
@@ -197,6 +197,60 @@ namespace ProiectIP
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void crearePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            groupBox1.Controls.Clear();
+            try
+            {
+                if (_context != null && (_context.Controls.Count == 1 || _context.Controls.Count == 3))
+                {
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
+                    _context.Controls.Clear();
+                    _context = null;
+                }
+                _context = new Context(new MakePlaylistState());
+                    _context.Request();
+                    _context.Controls[0].Text = "Adaugă fișier";
+                    _context.Controls[1].Text = "Salvează playlist";
+                    _context.Controls[2].Enabled = false;
+                    _context.Controls[0].Location = new System.Drawing.Point(30, 30);
+                    _context.Controls[1].Location= new System.Drawing.Point(120, 30);
+                    _context.Controls[2].Location = new System.Drawing.Point(30, 60);
+                    ((TextBox)_context.Controls[2]).Multiline = true;
+                    ((TextBox)_context.Controls[2]).Size = new System.Drawing.Size(770, 300);
+                    ((Button)_context.Controls[0]).Click += AddButtonClick;
+                    ((Button)_context.Controls[1]).Click += SaveButtonClick;
+                    groupBox1.Controls.Add(_context.Controls[0]);
+                    groupBox1.Controls.Add(_context.Controls[1]);
+                    groupBox1.Controls.Add(_context.Controls[2]);
+                
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void SaveButtonClick(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "Playlist(*.txt)|*.txt";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.File.WriteAllText(saveFileDialog1.FileName, ((TextBox)_context.Controls[2]).Text);
+                groupBox1.Controls.Clear();
+                _context.Controls.Clear();
+                _context = null;
+            }
+        }
+
+        private void AddButtonClick(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
+            if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                return;
+            _context.Controls[2].Text += Path.GetFullPath(openFileDialog1.FileName)+"\r\n";
         }
     }
 }

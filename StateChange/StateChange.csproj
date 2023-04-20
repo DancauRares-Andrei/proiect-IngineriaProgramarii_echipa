@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="MakePlaylistState.cs" />
     <Compile Include="PlaylistState.cs" />
     <Compile Include="SingleFileState.cs" />
     <Compile Include="State.cs" />
