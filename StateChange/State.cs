@@ -9,6 +9,6 @@ namespace StateChange
 {
     public interface State
     {
-        void Handle(Context context);
+        bool Handle(Context context);
     }
 }

@@ -11,11 +11,20 @@ namespace StateChange
 {
     public class SingleFileState : State
     {
-        public void Handle(Context context)
+        public bool Handle(Context context)
         {
-            AxWindowsMediaPlayer axWindowsMediaPlayer = new AxWindowsMediaPlayer();
-            context.Controls.Add(axWindowsMediaPlayer);
-           
+            if (context.StateNumber == 1)
+            {
+                AxWindowsMediaPlayer axWindowsMediaPlayer = new AxWindowsMediaPlayer();
+                context.Controls.Add(axWindowsMediaPlayer);
+                return true;
+            }
+            switch (context.StateNumber)
+            {
+                case 2:context.State = new PlaylistState(); break;
+                case 3:context.State = new MakePlaylistState();break;
+            }
+            return false;
         }
     }
 }

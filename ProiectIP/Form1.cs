@@ -20,6 +20,7 @@ namespace ProiectIP
         public Form1()
         {
             InitializeComponent();
+            _context = new Context(new SingleFileState());
         }
 
         private void deschidereFisierToolStripMenuItem_Click(object sender, EventArgs e)
@@ -28,16 +29,17 @@ namespace ProiectIP
                 openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context != null && _context.Controls.Count<2)
+                if (_context.StateNumber==1)
                 {
                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog1.FileName);
                 }
                 else
                 {
                     groupBox1.Controls.Clear();
-                    if (_context!=null && _context.Controls.Count!=4)
+                    if (_context.StateNumber==2)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    _context = new Context(new SingleFileState());
+                    _context.Controls.Clear();
+                    _context.StateNumber = 1;
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
                     _context.Controls[0].CreateControl();
@@ -71,7 +73,7 @@ namespace ProiectIP
                 openFileDialog1.Filter = "Playlist(*.txt)|*.txt";
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context != null && _context.Controls.Count ==3)
+                if (_context.StateNumber==2)
                 {
                     List<string> melodii = new List<string>();
                     StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog1.FileName));
@@ -96,9 +98,10 @@ namespace ProiectIP
                 else
                 {
                     groupBox1.Controls.Clear();
-                    if (_context != null && _context.Controls.Count != 4)
+                    if (_context.StateNumber==1)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    _context = new Context(new PlaylistState());
+                    _context.Controls.Clear();
+                    _context.StateNumber = 2;
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
                     groupBox1.Controls.Add(_context.Controls[1]);
@@ -209,27 +212,26 @@ namespace ProiectIP
             groupBox1.Controls.Clear();
             try
             {
-                if (_context != null && (_context.Controls.Count == 1 || _context.Controls.Count == 3))
+                if (_context.StateNumber==1 || _context.StateNumber==2)
                 {
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.Controls.Clear();
-                    _context = null;
                 }
-                _context = new Context(new MakePlaylistState());
-                    _context.Request();
-                    _context.Controls[0].Text = "Adaugă fișier";
-                    _context.Controls[1].Text = "Salvează playlist";
-                    _context.Controls[2].Enabled = false;
-                    _context.Controls[0].Location = new System.Drawing.Point(30, 30);
-                    _context.Controls[1].Location= new System.Drawing.Point(120, 30);
-                    _context.Controls[2].Location = new System.Drawing.Point(30, 60);
-                    ((TextBox)_context.Controls[2]).Multiline = true;
-                    ((TextBox)_context.Controls[2]).Size = new System.Drawing.Size(770, 300);
-                    ((Button)_context.Controls[0]).Click += AddButtonClick;
-                    ((Button)_context.Controls[1]).Click += SaveButtonClick;
-                    groupBox1.Controls.Add(_context.Controls[0]);
-                    groupBox1.Controls.Add(_context.Controls[1]);
-                    groupBox1.Controls.Add(_context.Controls[2]);
+                _context.StateNumber = 3;
+                _context.Request();
+                _context.Controls[0].Text = "Adaugă fișier";
+                _context.Controls[1].Text = "Salvează playlist";
+                _context.Controls[2].Enabled = false;
+                _context.Controls[0].Location = new System.Drawing.Point(30, 30);
+                _context.Controls[1].Location= new System.Drawing.Point(120, 30);
+                _context.Controls[2].Location = new System.Drawing.Point(30, 60);
+                ((TextBox)_context.Controls[2]).Multiline = true;
+                ((TextBox)_context.Controls[2]).Size = new System.Drawing.Size(770, 300);
+                ((Button)_context.Controls[0]).Click += AddButtonClick;
+                ((Button)_context.Controls[1]).Click += SaveButtonClick;
+                groupBox1.Controls.Add(_context.Controls[0]);
+                groupBox1.Controls.Add(_context.Controls[1]);
+                groupBox1.Controls.Add(_context.Controls[2]);
                 
             }
             catch(Exception ex)
@@ -248,7 +250,6 @@ namespace ProiectIP
                     System.IO.File.WriteAllText(saveFileDialog1.FileName, ((TextBox)_context.Controls[2]).Text);
                     groupBox1.Controls.Clear();
                     _context.Controls.Clear();
-                    _context = null;
                 }
             }
             catch(Exception ex)

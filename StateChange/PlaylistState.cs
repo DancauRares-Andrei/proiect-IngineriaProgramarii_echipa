@@ -10,11 +10,21 @@ namespace StateChange
 {
     public class PlaylistState : State
     {
-        public void Handle(Context context)
+        public bool Handle(Context context)
         {
-            context.Controls.Add(new AxWindowsMediaPlayer());
-            context.Controls.Add(new ListBox());
-            context.Controls.Add(new CheckBox());
+            if (context.StateNumber == 2)
+            {
+                context.Controls.Add(new AxWindowsMediaPlayer());
+                context.Controls.Add(new ListBox());
+                context.Controls.Add(new CheckBox());
+                return true;
+            }
+            switch (context.StateNumber)
+            {
+                case 1:context.State = new SingleFileState(); break;
+                case 3:context.State = new MakePlaylistState(); break;
+            }
+            return false;
         }
     }
 }

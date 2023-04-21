@@ -12,12 +12,22 @@ namespace StateChange
     {
         public List<Control> Controls { get; set; }
         public State State { get; set; }
+
+        public int StateNumber { get; set; }
         public Context(State state)
         {
             State = state;
             Controls = new List<Control>();
+            StateNumber = 0;
         }
 
-        public void Request() => State.Handle(this);
+        public void Request()
+        {            
+            bool x= State.Handle(this);
+            while (!x)
+            {
+                x = State.Handle(this);
+            }
+        }
     }
 }

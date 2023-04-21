@@ -9,12 +9,21 @@ namespace StateChange
 {
     public class MakePlaylistState : State
     {
-        public void Handle(Context context)
+        public bool Handle(Context context)
         {
-            context.Controls.Add(new Button());
-            context.Controls.Add(new Button());
-            context.Controls.Add(new TextBox());
-            context.Controls.Add(new TextBox());
+            if (context.StateNumber == 3)
+            {
+                context.Controls.Add(new Button());
+                context.Controls.Add(new Button());
+                context.Controls.Add(new TextBox());
+                return true;
+            }
+            switch (context.StateNumber)
+            {
+                case 1: context.State = new SingleFileState(); break;
+                case 2: context.State = new PlaylistState(); break;
+            }
+            return false;
         }
     }
 }
