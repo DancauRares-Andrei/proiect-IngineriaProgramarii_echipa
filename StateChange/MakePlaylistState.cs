@@ -11,7 +11,7 @@ namespace StateChange
     {
         public bool Handle(Context context)
         {
-            if (context.StateNumber == 3)
+            if (context.StateNumber == MP3PlayerStates.MAKE_PLAYLIST_STATE)
             {
                 context.Controls.Add(new Button());
                 context.Controls.Add(new Button());
@@ -20,8 +20,8 @@ namespace StateChange
             }
             switch (context.StateNumber)
             {
-                case 1: context.State = new SingleFileState(); break;
-                case 2: context.State = new PlaylistState(); break;
+                case MP3PlayerStates.SINGLE_FILE_STATE: context.State = new SingleFileState(); break;
+                case MP3PlayerStates.PLAYLIST_STATE: context.State = new PlaylistState(); break;
             }
             return false;
         }

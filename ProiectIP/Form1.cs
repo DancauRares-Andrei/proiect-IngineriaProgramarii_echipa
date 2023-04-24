@@ -29,17 +29,17 @@ namespace ProiectIP
                 openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context.StateNumber==1)
+                if (_context.StateNumber==MP3PlayerStates.SINGLE_FILE_STATE)
                 {
                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog1.FileName);
                 }
                 else
                 {
                     groupBox1.Controls.Clear();
-                    if (_context.StateNumber==2)
+                    if (_context.StateNumber==MP3PlayerStates.PLAYLIST_STATE)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.Controls.Clear();
-                    _context.StateNumber = 1;
+                    _context.StateNumber = MP3PlayerStates.SINGLE_FILE_STATE;
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
                     _context.Controls[0].CreateControl();
@@ -73,7 +73,7 @@ namespace ProiectIP
                 openFileDialog1.Filter = "Playlist(*.txt)|*.txt";
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context.StateNumber==2)
+                if (_context.StateNumber==MP3PlayerStates.PLAYLIST_STATE)
                 {
                     List<string> melodii = new List<string>();
                     StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog1.FileName));
@@ -98,10 +98,10 @@ namespace ProiectIP
                 else
                 {
                     groupBox1.Controls.Clear();
-                    if (_context.StateNumber==1)
+                    if (_context.StateNumber==MP3PlayerStates.SINGLE_FILE_STATE)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.Controls.Clear();
-                    _context.StateNumber = 2;
+                    _context.StateNumber = MP3PlayerStates.PLAYLIST_STATE;
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
                     groupBox1.Controls.Add(_context.Controls[1]);
@@ -212,12 +212,12 @@ namespace ProiectIP
             groupBox1.Controls.Clear();
             try
             {
-                if (_context.StateNumber==1 || _context.StateNumber==2)
+                if (_context.StateNumber==MP3PlayerStates.SINGLE_FILE_STATE || _context.StateNumber==MP3PlayerStates.PLAYLIST_STATE)
                 {
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.Controls.Clear();
                 }
-                _context.StateNumber = 3;
+                _context.StateNumber = MP3PlayerStates.MAKE_PLAYLIST_STATE;
                 _context.Request();
                 _context.Controls[0].Text = "Adaugă fișier";
                 _context.Controls[1].Text = "Salvează playlist";

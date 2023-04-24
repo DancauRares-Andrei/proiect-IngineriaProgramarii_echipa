@@ -8,23 +8,23 @@ using System.Windows.Forms;
 
 namespace StateChange
 {
-   public class Context
+    public class Context
     {
         public List<Control> Controls { get; set; }
         public State State { get; set; }
 
-        public int StateNumber { get; set; }
+        public MP3PlayerStates StateNumber { get; set; }
         public Context(State state)
         {
             State = state;
             Controls = new List<Control>();
-            StateNumber = 0;
+            StateNumber = MP3PlayerStates.NO_STATE;
         }
 
         public void Request()
         {            
             bool x= State.Handle(this);
-            while (!x)
+            if(!x)
             {
                 x = State.Handle(this);
             }

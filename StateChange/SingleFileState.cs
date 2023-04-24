@@ -13,7 +13,7 @@ namespace StateChange
     {
         public bool Handle(Context context)
         {
-            if (context.StateNumber == 1)
+            if (context.StateNumber == MP3PlayerStates.SINGLE_FILE_STATE)
             {
                 AxWindowsMediaPlayer axWindowsMediaPlayer = new AxWindowsMediaPlayer();
                 context.Controls.Add(axWindowsMediaPlayer);
@@ -21,8 +21,8 @@ namespace StateChange
             }
             switch (context.StateNumber)
             {
-                case 2:context.State = new PlaylistState(); break;
-                case 3:context.State = new MakePlaylistState();break;
+                case MP3PlayerStates.PLAYLIST_STATE:context.State = new PlaylistState(); break;
+                case MP3PlayerStates.MAKE_PLAYLIST_STATE:context.State = new MakePlaylistState();break;
             }
             return false;
         }
