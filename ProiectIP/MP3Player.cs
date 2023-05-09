@@ -1,4 +1,20 @@
-﻿using AxWMPLib;
+﻿/**************************************************************************
+ *                                                                        *
+ *  File:        MP3Player.cs                                             *
+ *  Copyright:   (c) 2023, Dancău Rareș-Andrei                            *
+ *  E-mail:      rares-andrei.dancau@student.tuiasi.ro                    *
+ *  Description: Clasa principală a programului ce implementează          *
+ *               logica acestuia.                                         *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+using AxWMPLib;
 using StateChange;
 using System;
 using System.Collections.Generic;
@@ -14,10 +30,10 @@ using System.Windows.Forms;
 
 namespace ProiectIP
 {
-    public partial class Form1 : Form
+    public partial class MP3Player : Form
     {
         private Context _context;
-        public Form1()
+        public MP3Player()
         {
             InitializeComponent();
             _context = new Context(new SingleFileState());
@@ -26,27 +42,27 @@ namespace ProiectIP
         private void deschidereFisierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try {
-                openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
-                if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                openFileDialog.Filter = "Audio file(*.mp3)|*.mp3";
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context.StateNumber==MP3PlayerStates.SINGLE_FILE_STATE)
+                if (_context.StateNumber==MP3PlayerStates.SingleFileState)
                 {
-                   ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog1.FileName);
+                   ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog.FileName);
                 }
                 else
                 {
                     groupBox1.Controls.Clear();
-                    if (_context.StateNumber==MP3PlayerStates.PLAYLIST_STATE)
+                    if (_context.StateNumber==MP3PlayerStates.PlaylistState)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.Controls.Clear();
-                    _context.StateNumber = MP3PlayerStates.SINGLE_FILE_STATE;
+                    _context.StateNumber = MP3PlayerStates.SingleFileState;
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
                     _context.Controls[0].CreateControl();
                     ((AxWindowsMediaPlayer)_context.Controls[0]).settings.setMode("loop", true);
                     _context.Controls[0].Location = new System.Drawing.Point(6, 27);
                     _context.Controls[0].Size = new System.Drawing.Size(498, 368);
-                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog1.FileName);
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog.FileName);
                 }
             }
             catch (Exception ex)
@@ -70,13 +86,13 @@ namespace ProiectIP
         private void deschiderePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try {
-                openFileDialog1.Filter = "Playlist(*.txt)|*.txt";
-                if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                openFileDialog.Filter = "Playlist(*.txt)|*.txt";
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context.StateNumber==MP3PlayerStates.PLAYLIST_STATE)
+                if (_context.StateNumber==MP3PlayerStates.PlaylistState)
                 {
                     List<string> melodii = new List<string>();
-                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog1.FileName));
+                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
                     string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     sr.Close();
                     for (int i = 0; i < lvls.Length; i++)
@@ -98,10 +114,10 @@ namespace ProiectIP
                 else
                 {
                     groupBox1.Controls.Clear();
-                    if (_context.StateNumber==MP3PlayerStates.SINGLE_FILE_STATE)
+                    if (_context.StateNumber==MP3PlayerStates.SingleFileState)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.Controls.Clear();
-                    _context.StateNumber = MP3PlayerStates.PLAYLIST_STATE;
+                    _context.StateNumber = MP3PlayerStates.PlaylistState;
                     _context.Request();
                     groupBox1.Controls.Add(_context.Controls[0]);
                     groupBox1.Controls.Add(_context.Controls[1]);
@@ -109,7 +125,7 @@ namespace ProiectIP
                     _context.Controls[0].Location = new System.Drawing.Point(6, 27);
                     _context.Controls[0].Size = new System.Drawing.Size(498, 368);
                     List<string> melodii = new List<string>();
-                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog1.FileName));
+                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
                     string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     sr.Close();
                     for (int i = 0; i < lvls.Length; i++)
@@ -164,7 +180,7 @@ namespace ProiectIP
             {
                 if (e.newState == 8)
                 {
-                    timer1.Enabled = true;
+                    timer.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -176,7 +192,7 @@ namespace ProiectIP
         {
             try
             {
-                timer1.Enabled = false;
+                timer.Enabled = false;
                 if(((ListBox)_context.Controls[1]).Items.Count==1)
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                 else
@@ -212,12 +228,12 @@ namespace ProiectIP
             groupBox1.Controls.Clear();
             try
             {
-                if (_context.StateNumber==MP3PlayerStates.SINGLE_FILE_STATE || _context.StateNumber==MP3PlayerStates.PLAYLIST_STATE)
+                if (_context.StateNumber==MP3PlayerStates.SingleFileState || _context.StateNumber==MP3PlayerStates.PlaylistState)
                 {
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.Controls.Clear();
                 }
-                _context.StateNumber = MP3PlayerStates.MAKE_PLAYLIST_STATE;
+                _context.StateNumber = MP3PlayerStates.MakePlaylistState;
                 _context.Request();
                 _context.Controls[0].Text = "Adaugă fișier";
                 _context.Controls[1].Text = "Salvează playlist";
@@ -244,10 +260,10 @@ namespace ProiectIP
         {
             try
             {
-                saveFileDialog1.Filter = "Playlist(*.txt)|*.txt";
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                saveFileDialog.Filter = "Playlist(*.txt)|*.txt";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    System.IO.File.WriteAllText(saveFileDialog1.FileName, ((TextBox)_context.Controls[2]).Text);
+                    System.IO.File.WriteAllText(saveFileDialog.FileName, ((TextBox)_context.Controls[2]).Text);
                     groupBox1.Controls.Clear();
                     _context.Controls.Clear();
                 }
@@ -262,10 +278,10 @@ namespace ProiectIP
         {
             try
             {
-                openFileDialog1.Filter = "Audio file(*.mp3)|*.mp3";
-                if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                openFileDialog.Filter = "Audio file(*.mp3)|*.mp3";
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
-                _context.Controls[2].Text += Path.GetFullPath(openFileDialog1.FileName) + "\r\n";
+                _context.Controls[2].Text += Path.GetFullPath(openFileDialog.FileName) + "\r\n";
             }
             catch (Exception ex)
             {

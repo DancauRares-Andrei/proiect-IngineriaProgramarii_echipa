@@ -1,4 +1,21 @@
-﻿using AxWMPLib;
+﻿/**************************************************************************
+ *                                                                        *
+ *  File:        Context.cs                                               *
+ *  Copyright:   (c) 2023, Dancău Rareș-Andrei                            *
+ *  E-mail:      rares-andrei.dancau@student.tuiasi.ro                    *
+ *  Description: Clasă folosită pentru a determina starea curentă a       *
+ *               programului și modificarea în mod corespunzător a        *
+ *               facilităților.                                           *
+ *                                                                        *
+ *  This program is free software; you can redistribute it and/or modify  *
+ *  it under the terms of the GNU General Public License as published by  *
+ *  the Free Software Foundation. This program is distributed in the      *
+ *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even   *
+ *  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR   *
+ *  PURPOSE. See the GNU General Public License for more details.         *
+ *                                                                        *
+ **************************************************************************/
+using AxWMPLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +35,7 @@ namespace StateChange
         {
             State = state;
             Controls = new List<Control>();
-            StateNumber = MP3PlayerStates.NO_STATE;
+            StateNumber = MP3PlayerStates.NoState;
         }
 
         public void Request()

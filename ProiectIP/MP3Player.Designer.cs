@@ -1,7 +1,7 @@
 ﻿
 namespace ProiectIP
 {
-    partial class Form1
+    partial class MP3Player
     {
         /// <summary>
         /// Required designer variable.
@@ -30,28 +30,28 @@ namespace ProiectIP
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.operatiiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deschidereFisierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deschiderePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iesireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.crearePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.menuStrip1.SuspendLayout();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.operatiiToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(834, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(834, 24);
+            this.menuStrip.TabIndex = 1;
+            this.menuStrip.Text = "menuStrip1";
             // 
             // operatiiToolStripMenuItem
             // 
@@ -61,8 +61,8 @@ namespace ProiectIP
             this.crearePlaylistToolStripMenuItem,
             this.iesireToolStripMenuItem});
             this.operatiiToolStripMenuItem.Name = "operatiiToolStripMenuItem";
-            this.operatiiToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.operatiiToolStripMenuItem.Text = "Operatii";
+            this.operatiiToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.operatiiToolStripMenuItem.Text = "Meniu";
             // 
             // deschidereFisierToolStripMenuItem
             // 
@@ -77,6 +77,13 @@ namespace ProiectIP
             this.deschiderePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deschiderePlaylistToolStripMenuItem.Text = "Deschidere playlist";
             this.deschiderePlaylistToolStripMenuItem.Click += new System.EventHandler(this.deschiderePlaylistToolStripMenuItem_Click);
+            // 
+            // crearePlaylistToolStripMenuItem
+            // 
+            this.crearePlaylistToolStripMenuItem.Name = "crearePlaylistToolStripMenuItem";
+            this.crearePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.crearePlaylistToolStripMenuItem.Text = "Creare playlist";
+            this.crearePlaylistToolStripMenuItem.Click += new System.EventHandler(this.crearePlaylistToolStripMenuItem_Click);
             // 
             // iesireToolStripMenuItem
             // 
@@ -93,16 +100,9 @@ namespace ProiectIP
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
-            // timer1
+            // timer
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // crearePlaylistToolStripMenuItem
-            // 
-            this.crearePlaylistToolStripMenuItem.Name = "crearePlaylistToolStripMenuItem";
-            this.crearePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.crearePlaylistToolStripMenuItem.Text = "Creare playlist";
-            this.crearePlaylistToolStripMenuItem.Click += new System.EventHandler(this.crearePlaylistToolStripMenuItem_Click);
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -110,30 +110,30 @@ namespace ProiectIP
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 450);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip);
             this.HelpButton = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "MP3 Player";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem operatiiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deschidereFisierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deschiderePlaylistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iesireToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ToolStripMenuItem crearePlaylistToolStripMenuItem;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

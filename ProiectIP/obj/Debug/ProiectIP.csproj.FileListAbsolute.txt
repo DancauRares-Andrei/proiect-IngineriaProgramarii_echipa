@@ -11,7 +11,6 @@ C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\Interop.WMPLaun
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\Interop.WMPLib.dll
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.csproj.ResolveComReference.cache
-C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.Form1.resources
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.Properties.Resources.resources
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.csproj.GenerateResource.cache
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.csproj.CoreCompileInputs.cache
@@ -19,3 +18,4 @@ C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.cspro
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.exe
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.pdb
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.csproj.AssemblyReference.cache
+C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.MP3Player.resources
