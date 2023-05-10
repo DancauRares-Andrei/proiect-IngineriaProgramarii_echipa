@@ -51,13 +51,12 @@ namespace ProiectIP
                 }
                 else
                 {
-                    groupBox1.Controls.Clear();
+                    groupBox.Controls.Clear();
                     if (_context.StateNumber==MP3PlayerStates.PlaylistState)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    _context.Controls.Clear();
                     _context.StateNumber = MP3PlayerStates.SingleFileState;
                     _context.Request();
-                    groupBox1.Controls.Add(_context.Controls[0]);
+                    groupBox.Controls.Add(_context.Controls[0]);
                     _context.Controls[0].CreateControl();
                     ((AxWindowsMediaPlayer)_context.Controls[0]).settings.setMode("loop", true);
                     _context.Controls[0].Location = new System.Drawing.Point(6, 27);
@@ -108,20 +107,21 @@ namespace ProiectIP
                     ((ListBox)_context.Controls[1]).ValueMember = "Path";
 
 
-                    ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBox1_SelectedIndexChanged;
+                    ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                 }
                 else
                 {
-                    groupBox1.Controls.Clear();
+                    groupBox.Controls.Clear();
                     if (_context.StateNumber==MP3PlayerStates.SingleFileState)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    _context.Controls.Clear();
+                    
                     _context.StateNumber = MP3PlayerStates.PlaylistState;
                     _context.Request();
-                    groupBox1.Controls.Add(_context.Controls[0]);
-                    groupBox1.Controls.Add(_context.Controls[1]);
-                    groupBox1.Controls.Add(_context.Controls[2]);
+                    groupBox.Controls.Add(_context.Controls[0]);
+                    groupBox.Controls.Add(_context.Controls[1]);
+                    groupBox.Controls.Add(_context.Controls[2]);
+                    groupBox.Controls.Add(_context.Controls[3]);
                     _context.Controls[0].Location = new System.Drawing.Point(6, 27);
                     _context.Controls[0].Size = new System.Drawing.Size(498, 368);
                     List<string> melodii = new List<string>();
@@ -144,12 +144,16 @@ namespace ProiectIP
                     ((ListBox)_context.Controls[1]).ValueMember = "Path";
 
 
-                    ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBox1_SelectedIndexChanged;
+                    ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).PlayStateChange += axWindowsMediaPlayer1_PlayStateChange;
                     _context.Controls[2].Text = "Random";
                     _context.Controls[2].Size = new System.Drawing.Size(66, 17);
                     _context.Controls[2].Location = new System.Drawing.Point(740, 27);
+                    _context.Controls[3].Text = "Loop";
+                    ((CheckBox)_context.Controls[3]).CheckedChanged += PlaylistLoop_CheckedChanged;
+                    _context.Controls[3].Size = new System.Drawing.Size(66, 17);
+                    _context.Controls[3].Location = new System.Drawing.Point(740, 47);
                 }
             }
             catch (Exception ex)
@@ -157,7 +161,26 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void PlaylistLoop_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckBox checkBox = (CheckBox)sender;
+                if (checkBox.Checked)
+                {
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).settings.setMode("loop", true);
+                }
+                else
+                {
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).settings.setMode("loop", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void listBoxPlaylist_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -178,7 +201,7 @@ namespace ProiectIP
         {
             try
             {
-                if (e.newState == 8)
+                if (e.newState == 8 && ((CheckBox)_context.Controls[3]).Checked == false)
                 {
                     timer.Enabled = true;
                 }
@@ -225,13 +248,12 @@ namespace ProiectIP
 
         private void crearePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            groupBox1.Controls.Clear();
+            groupBox.Controls.Clear();
             try
             {
                 if (_context.StateNumber==MP3PlayerStates.SingleFileState || _context.StateNumber==MP3PlayerStates.PlaylistState)
                 {
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    _context.Controls.Clear();
                 }
                 _context.StateNumber = MP3PlayerStates.MakePlaylistState;
                 _context.Request();
@@ -245,9 +267,9 @@ namespace ProiectIP
                 ((TextBox)_context.Controls[2]).Size = new System.Drawing.Size(770, 300);
                 ((Button)_context.Controls[0]).Click += AddButtonClick;
                 ((Button)_context.Controls[1]).Click += SaveButtonClick;
-                groupBox1.Controls.Add(_context.Controls[0]);
-                groupBox1.Controls.Add(_context.Controls[1]);
-                groupBox1.Controls.Add(_context.Controls[2]);
+                groupBox.Controls.Add(_context.Controls[0]);
+                groupBox.Controls.Add(_context.Controls[1]);
+                groupBox.Controls.Add(_context.Controls[2]);
                 
             }
             catch(Exception ex)
@@ -264,7 +286,7 @@ namespace ProiectIP
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     System.IO.File.WriteAllText(saveFileDialog.FileName, ((TextBox)_context.Controls[2]).Text);
-                    groupBox1.Controls.Clear();
+                    groupBox.Controls.Clear();
                     _context.Controls.Clear();
                 }
             }

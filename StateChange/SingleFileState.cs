@@ -28,19 +28,23 @@ namespace StateChange
     public class SingleFileState : State
     {
         public bool Handle(Context context)
-        {
+        {// Verificăm dacă starea actuală este deja SingleFileState
             if (context.StateNumber == MP3PlayerStates.SingleFileState)
-            {
+            {// Dacă da, eliminăm controalele existente și adăugăm cele necesare pentru această stare
+                context.Controls.Clear();
                 AxWindowsMediaPlayer axWindowsMediaPlayer = new AxWindowsMediaPlayer();
                 context.Controls.Add(axWindowsMediaPlayer);
                 return true;
             }
+            //  Dacă nu suntem în starea SingleFileState, trecem la altă stare
             switch (context.StateNumber)
             {
                 case MP3PlayerStates.PlaylistState:context.State = new PlaylistState(); break;
                 case MP3PlayerStates.MakePlaylistState:context.State = new MakePlaylistState();break;
+               // case MP3PlayerStates.EditPlaylistState: context.State = new EditPlaylistState(); break;
+               // case MP3PlayerStates.RadioState: context.State = new RadioState(); break;
             }
-            return false;
+            return false;// Returnăm false pentru a indica că starea a necesitat o schimbare
         }
     }
 }

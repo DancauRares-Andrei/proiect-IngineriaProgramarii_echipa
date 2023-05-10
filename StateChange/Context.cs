@@ -24,23 +24,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StateChange
-{
+{// Clasa Context are rolul de a stoca starea curenta si controalele asociate starii.
     public class Context
-    {
+    { // Lista de controale pentru starea curenta
         public List<Control> Controls { get; set; }
+        // Starea curenta a contextului
         public State State { get; set; }
-
+        // Numarul starii curente
         public MP3PlayerStates StateNumber { get; set; }
+        // Constructorul Context initializeaza starea curenta, lista de controale si numarul starii cu "NoState"
         public Context(State state)
         {
             State = state;
             Controls = new List<Control>();
             StateNumber = MP3PlayerStates.NoState;
         }
-
+        // Metoda Request este folosita pentru a solicita incarcarea controalelor
         public void Request()
-        {            
+        {   //Se incearca incarcarea controalelor cu starea curenta         
             bool x= State.Handle(this);
+            //Daca s-a revenit pe false, inseamna ca s-a schimbat starea si trebuie facuta incarcarea controalelor
             if(!x)
             {
                 x = State.Handle(this);
