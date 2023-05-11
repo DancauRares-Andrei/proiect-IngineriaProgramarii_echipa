@@ -26,7 +26,7 @@ namespace StateChange
     /// <summary>
     /// Clasa folosita de context atunci cand se creeaza un playlist
     /// </summary>
-    public class MakePlaylistState : State
+    public class MakePlaylistState : IState
     {
         /// <summary>
         /// Functie in care se schimba starea contextului, daca StateNumber nu corespunde, sau se inserează controalele în context, altfel.

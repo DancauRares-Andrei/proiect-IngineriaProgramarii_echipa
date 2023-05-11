@@ -107,12 +107,12 @@
             <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
             </summary>
         </member>
-        <member name="T:StateChange.State">
+        <member name="T:StateChange.IState">
             <summary>
             Interfata folosita de context pentru a-și schimba comportamentul
             </summary>
         </member>
-        <member name="M:StateChange.State.Handle(StateChange.Context)">
+        <member name="M:StateChange.IState.Handle(StateChange.Context)">
             <summary>
             Functie implementata in clasele derivate
             <param name="context">Contextul asupra caruia se vor aplica operatiile</param>

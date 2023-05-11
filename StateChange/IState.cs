@@ -27,7 +27,7 @@ namespace StateChange
     /// <summary>
     /// Interfata folosita de context pentru a-și schimba comportamentul
     /// </summary>
-    public interface State
+    public interface IState
     {
         /// <summary>
         /// Functie implementata in clasele derivate

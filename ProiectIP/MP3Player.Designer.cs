@@ -102,7 +102,7 @@ namespace ProiectIP
             // 
             // timer
             // 
-            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // MP3Player
             // 

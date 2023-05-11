@@ -28,7 +28,7 @@ namespace StateChange
  /// <summary>
  /// Stare folosita de context atunci cand se reda un singur fisier
  /// </summary>
-    public class SingleFileState : State
+    public class SingleFileState : IState
     {
         /// <summary>
         /// Functie in care se schimba starea contextului, daca StateNumber nu corespunde sau se inserează controalele în context dacă există corespondența.

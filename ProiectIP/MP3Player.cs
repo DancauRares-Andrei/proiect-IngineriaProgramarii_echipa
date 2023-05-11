@@ -30,29 +30,43 @@ using System.Windows.Forms;
 
 namespace ProiectIP
 {
+    /// <summary>
+    /// Clasa principala a programului, ce extinde clasa Form
+    /// </summary>
     public partial class MP3Player : Form
     {
+        /// <summary>
+        /// Contextul folosit de program pentru a schimba controalele din groupBox
+        /// </summary>
         private Context _context;
+        /// <summary>
+        /// Constructor ce initializeaza componentele Form-ului si apeleaza contructorul contextului
+        /// </summary>
         public MP3Player()
         {
             InitializeComponent();
             _context = new Context();
         }
-
+        /// <summary>
+        /// Functie apelata atunci cand se apasa "Deschidere fisier"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deschidereFisierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 openFileDialog.Filter = "Audio file(*.mp3)|*.mp3";
                 if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context.StateNumber==MP3PlayerStates.SingleFileState)
+                if (_context.StateNumber == MP3PlayerStates.SingleFileState)
                 {
-                   ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog.FileName);
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog.FileName);
                 }
                 else
                 {
                     groupBox.Controls.Clear();
-                    if (_context.StateNumber==MP3PlayerStates.PlaylistState)
+                    if (_context.StateNumber == MP3PlayerStates.PlaylistState)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.StateNumber = MP3PlayerStates.SingleFileState;
                     _context.Request();
@@ -69,7 +83,11 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Functie apelata atunci cand se apasa "Iesire"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iesireToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -81,14 +99,19 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Functie apelata cand se apasa "Deschidere playlist"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deschiderePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 openFileDialog.Filter = "Playlist(*.txt)|*.txt";
                 if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
-                if (_context.StateNumber==MP3PlayerStates.PlaylistState)
+                if (_context.StateNumber == MP3PlayerStates.PlaylistState)
                 {
                     List<string> melodii = new List<string>();
                     StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
@@ -113,9 +136,9 @@ namespace ProiectIP
                 else
                 {
                     groupBox.Controls.Clear();
-                    if (_context.StateNumber==MP3PlayerStates.SingleFileState)
+                    if (_context.StateNumber == MP3PlayerStates.SingleFileState)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    
+
                     _context.StateNumber = MP3PlayerStates.PlaylistState;
                     _context.Request();
                     groupBox.Controls.Add(_context.Controls[0]);
@@ -146,7 +169,7 @@ namespace ProiectIP
 
                     ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
-                    ((AxWindowsMediaPlayer)_context.Controls[0]).PlayStateChange += axWindowsMediaPlayer1_PlayStateChange;
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).PlayStateChange += axWindowsMediaPlayer_PlayStateChange;
                     _context.Controls[2].Text = "Random";
                     _context.Controls[2].Size = new System.Drawing.Size(66, 17);
                     _context.Controls[2].Location = new System.Drawing.Point(740, 27);
@@ -161,6 +184,11 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
+        /// <summary>
+        /// Functie apelata atunci cand se apasa pe checkbox-ul Loop din playlist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PlaylistLoop_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -180,6 +208,11 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
+        /// <summary>
+        /// Functie apelata atunci cand se schimba melodia selectata din playlist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxPlaylist_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -197,7 +230,12 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
-        private void axWindowsMediaPlayer1_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        /// <summary>
+        /// Functie apelata atunci cand obiectul AxWindowsMediaPlayer isi schimba starea
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void axWindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
             try
             {
@@ -211,12 +249,17 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
-        private void timer1_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// Functie apelata atunci cand trece perioada unui timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer_Tick(object sender, EventArgs e)
         {
             try
             {
                 timer.Enabled = false;
-                if(((ListBox)_context.Controls[1]).Items.Count==1)
+                if (((ListBox)_context.Controls[1]).Items.Count == 1)
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                 else
                 {
@@ -240,18 +283,23 @@ namespace ProiectIP
                         }
                     }
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Functie apelata atunci cand se apasa pe "Creare playlist"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void crearePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
             groupBox.Controls.Clear();
             try
             {
-                if (_context.StateNumber==MP3PlayerStates.SingleFileState || _context.StateNumber==MP3PlayerStates.PlaylistState)
+                if (_context.StateNumber == MP3PlayerStates.SingleFileState || _context.StateNumber == MP3PlayerStates.PlaylistState)
                 {
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                 }
@@ -261,7 +309,7 @@ namespace ProiectIP
                 _context.Controls[1].Text = "Salvează playlist";
                 _context.Controls[2].Enabled = false;
                 _context.Controls[0].Location = new System.Drawing.Point(30, 30);
-                _context.Controls[1].Location= new System.Drawing.Point(120, 30);
+                _context.Controls[1].Location = new System.Drawing.Point(120, 30);
                 _context.Controls[2].Location = new System.Drawing.Point(30, 60);
                 ((TextBox)_context.Controls[2]).Multiline = true;
                 ((TextBox)_context.Controls[2]).Size = new System.Drawing.Size(770, 300);
@@ -270,14 +318,18 @@ namespace ProiectIP
                 groupBox.Controls.Add(_context.Controls[0]);
                 groupBox.Controls.Add(_context.Controls[1]);
                 groupBox.Controls.Add(_context.Controls[2]);
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Functie apelata atunci cand se apasa pe butonul de salvare din creare playlist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveButtonClick(object sender, EventArgs e)
         {
             try
@@ -290,12 +342,16 @@ namespace ProiectIP
                     _context.Controls.Clear();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Functie apelata atunci cand se apasa pe butonul de adaugare cantec din creare playlist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButtonClick(object sender, EventArgs e)
         {
             try

@@ -27,7 +27,7 @@ namespace StateChange
     /// <summary>
     /// Stare folosita de context atunci cand se reda un playlist
     /// </summary>
-    public class PlaylistState : State
+    public class PlaylistState : IState
     {
         /// <summary>
         /// Functie in care se schimba starea contextului, daca StateNumber nu corespunde sau se inserează controalele în context dacă există corespondența.

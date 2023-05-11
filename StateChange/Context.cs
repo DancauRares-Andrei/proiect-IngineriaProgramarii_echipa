@@ -38,7 +38,7 @@ namespace StateChange
         ///<summary>
         /// Starea curenta a contextului
         ///</summary>
-        public State State { get; set; }
+        public IState State { get; set; }
         ///<summary>
         /// Numarul starii curente
         ///</summary>
@@ -57,12 +57,11 @@ namespace StateChange
         /// </summary>
         public void Request() 
         { 
-           //Se incearca incarcarea controalelor cu starea curenta      
-            bool x= State.Handle(this);
-            //Daca s-a revenit pe false, inseamna ca s-a schimbat starea si trebuie facuta incarcarea controalelor
-            if(!x)
+           //Se incearca incarcarea controalelor cu starea curenta                
+            if(!State.Handle(this))
             {
-                x = State.Handle(this);
+                //Daca s-a revenit pe false, inseamna ca s-a schimbat starea si trebuie facuta incarcarea controalelor
+                State.Handle(this);
             }
         }
     }
