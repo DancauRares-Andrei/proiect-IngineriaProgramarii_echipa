@@ -6,3 +6,4 @@ C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.p
 C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\bin\Debug\AxInterop.WMPLib.dll
 C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.csproj.CopyComplete
 C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.csproj.AssemblyReference.cache
+C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\bin\Debug\StateChange.xml

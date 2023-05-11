@@ -25,12 +25,23 @@ using System.Windows.Forms;
 
 namespace StateChange
 {
+ /// <summary>
+ /// Stare folosita de context atunci cand se reda un singur fisier
+ /// </summary>
     public class SingleFileState : State
     {
+        /// <summary>
+        /// Functie in care se schimba starea contextului, daca StateNumber nu corespunde sau se inserează controalele în context dacă există corespondența.
+        /// <param name="context">Contextul asupra caruia se vor aplica operatiile</param>
+        /// <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
+        /// </summary>
         public bool Handle(Context context)
-        {// Verificăm dacă starea actuală este deja SingleFileState
+        {
+
+            // Verificăm dacă starea actuală este deja SingleFileState
             if (context.StateNumber == MP3PlayerStates.SingleFileState)
-            {// Dacă da, eliminăm controalele existente și adăugăm cele necesare pentru această stare
+            {
+                // Dacă da, eliminăm controalele existente și adăugăm cele necesare pentru această stare
                 context.Controls.Clear();
                 AxWindowsMediaPlayer axWindowsMediaPlayer = new AxWindowsMediaPlayer();
                 context.Controls.Add(axWindowsMediaPlayer);
@@ -44,7 +55,7 @@ namespace StateChange
                // case MP3PlayerStates.EditPlaylistState: context.State = new EditPlaylistState(); break;
                // case MP3PlayerStates.RadioState: context.State = new RadioState(); break;
             }
-            return false;// Returnăm false pentru a indica că starea a necesitat o schimbare
+            return false;
         }
     }
 }

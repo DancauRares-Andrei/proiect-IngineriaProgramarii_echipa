@@ -19,3 +19,4 @@ C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.exe
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.pdb
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.csproj.AssemblyReference.cache
 C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\obj\Debug\ProiectIP.MP3Player.resources
+C:\Users\Andrei Rares\source\repos\ProiectIP\ProiectIP\bin\Debug\StateChange.xml

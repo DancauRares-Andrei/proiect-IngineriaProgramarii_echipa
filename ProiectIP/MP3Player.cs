@@ -36,7 +36,7 @@ namespace ProiectIP
         public MP3Player()
         {
             InitializeComponent();
-            _context = new Context(new SingleFileState());
+            _context = new Context();
         }
 
         private void deschidereFisierToolStripMenuItem_Click(object sender, EventArgs e)

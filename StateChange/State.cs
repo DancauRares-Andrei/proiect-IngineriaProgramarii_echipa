@@ -24,8 +24,16 @@ using System.Windows.Forms;
 
 namespace StateChange
 {
+    /// <summary>
+    /// Interfata folosita de context pentru a-și schimba comportamentul
+    /// </summary>
     public interface State
     {
+        /// <summary>
+        /// Functie implementata in clasele derivate
+        /// <param name="context">Contextul asupra caruia se vor aplica operatiile</param>
+        /// <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
+        /// </summary>
         bool Handle(Context context);
     }
 }

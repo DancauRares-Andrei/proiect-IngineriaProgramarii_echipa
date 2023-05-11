@@ -23,8 +23,16 @@ using System.Windows.Forms;
 
 namespace StateChange
 {
+    /// <summary>
+    /// Clasa folosita de context atunci cand se creeaza un playlist
+    /// </summary>
     public class MakePlaylistState : State
     {
+        /// <summary>
+        /// Functie in care se schimba starea contextului, daca StateNumber nu corespunde, sau se inserează controalele în context, altfel.
+        /// <param name="context">Contextul asupra caruia se vor aplica operatiile</param>
+        /// <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
+        /// </summary>
         public bool Handle(Context context)
         {
             // Verificăm dacă starea actuală este deja MakePlaylistState

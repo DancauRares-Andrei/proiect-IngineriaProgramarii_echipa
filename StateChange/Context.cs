@@ -24,24 +24,40 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StateChange
-{// Clasa Context are rolul de a stoca starea curenta si controalele asociate starii.
+   
+{
+    ///<summary>
+    /// Clasa Context are rolul de a stoca starea curenta si controalele asociate starii.
+    ///</summary>
     public class Context
-    { // Lista de controale pentru starea curenta
+    {
+        ///<summary>
+        /// Lista de controale pentru starea curenta
+        ///</summary>
         public List<Control> Controls { get; set; }
-        // Starea curenta a contextului
+        ///<summary>
+        /// Starea curenta a contextului
+        ///</summary>
         public State State { get; set; }
-        // Numarul starii curente
+        ///<summary>
+        /// Numarul starii curente
+        ///</summary>
         public MP3PlayerStates StateNumber { get; set; }
-        // Constructorul Context initializeaza starea curenta, lista de controale si numarul starii cu "NoState"
-        public Context(State state)
+        ///<summary>
+        /// Constructorul Context initializeaza starea curenta, lista de controale si numarul starii cu "NoState"
+        /// </summary>
+        public Context()
         {
-            State = state;
+            State = new SingleFileState() ;
             Controls = new List<Control>();
             StateNumber = MP3PlayerStates.NoState;
         }
-        // Metoda Request este folosita pentru a solicita incarcarea controalelor
-        public void Request()
-        {   //Se incearca incarcarea controalelor cu starea curenta         
+        /// <summary>
+        /// Metoda Request este folosita pentru a solicita incarcarea controalelor
+        /// </summary>
+        public void Request() 
+        { 
+           //Se incearca incarcarea controalelor cu starea curenta      
             bool x= State.Handle(this);
             //Daca s-a revenit pe false, inseamna ca s-a schimbat starea si trebuie facuta incarcarea controalelor
             if(!x)
