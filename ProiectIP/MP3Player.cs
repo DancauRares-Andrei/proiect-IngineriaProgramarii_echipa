@@ -303,18 +303,7 @@ namespace ProiectIP
                 {
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                 }
-                _context.StateNumber = MP3PlayerStates.MakePlaylistState;
-                _context.Request();
-                _context.Controls[0].Text = "Adaugă fișier";
-                _context.Controls[1].Text = "Salvează playlist";
-                _context.Controls[2].Enabled = false;
-                _context.Controls[0].Location = new System.Drawing.Point(30, 30);
-                _context.Controls[1].Location = new System.Drawing.Point(120, 30);
-                _context.Controls[2].Location = new System.Drawing.Point(30, 60);
-                ((TextBox)_context.Controls[2]).Multiline = true;
-                ((TextBox)_context.Controls[2]).Size = new System.Drawing.Size(770, 300);
-                ((Button)_context.Controls[0]).Click += AddButtonClick;
-                ((Button)_context.Controls[1]).Click += SaveButtonClick;
+                InitializeMakePlaylistContext(_context);
                 groupBox.Controls.Add(_context.Controls[0]);
                 groupBox.Controls.Add(_context.Controls[1]);
                 groupBox.Controls.Add(_context.Controls[2]);
@@ -365,6 +354,22 @@ namespace ProiectIP
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void InitializeMakePlaylistContext(Context context)
+        {
+            context.StateNumber = MP3PlayerStates.MakePlaylistState;
+            context.Request();
+            context.Controls[0].Text = "Adaugă fișier";
+            context.Controls[1].Text = "Salvează playlist";
+            context.Controls[2].Enabled = false;
+            context.Controls[0].Location = new System.Drawing.Point(30, 30);
+            context.Controls[1].Location = new System.Drawing.Point(120, 30);
+            context.Controls[2].Location = new System.Drawing.Point(30, 60);
+            ((TextBox)context.Controls[2]).Multiline = true;
+            ((TextBox)context.Controls[2]).Size = new System.Drawing.Size(770, 300);
+            ((Button)context.Controls[0]).Click += AddButtonClick;
+            ((Button)context.Controls[1]).Click += SaveButtonClick;
         }
     }
 }

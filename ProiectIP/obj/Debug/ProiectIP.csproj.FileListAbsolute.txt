@@ -43,3 +43,4 @@ C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\obj\Debug\P
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\obj\Debug\ProiectIP.csproj.CopyComplete
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\obj\Debug\ProiectIP.exe
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\obj\Debug\ProiectIP.pdb
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\StateChange.xml

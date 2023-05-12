@@ -47,9 +47,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTestIState.cs" />
+    <Compile Include="UnitTestMP3Player.cs" />
+    <Compile Include="UnitTestContext.cs" />
+    <Compile Include="UnitTestPlaylistState.cs" />
+    <Compile Include="UnitTestSingleFileState.cs" />
+    <Compile Include="UnitTestMakePlaylistState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
