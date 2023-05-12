@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StateChange</name>
+    </assembly>
+    <members>
+        <member name="T:StateChange.Context">
+            <summary>
+             Clasa Context are rolul de a stoca starea curenta si controalele asociate starii.
+            </summary>
+        </member>
+        <member name="P:StateChange.Context.Controls">
+            <summary>
+             Lista de controale pentru starea curenta
+            </summary>
+        </member>
+        <member name="P:StateChange.Context.State">
+            <summary>
+             Starea curenta a contextului
+            </summary>
+        </member>
+        <member name="P:StateChange.Context.StateNumber">
+            <summary>
+             Numarul starii curente
+            </summary>
+        </member>
+        <member name="M:StateChange.Context.#ctor">
+            <summary>
+             Constructorul Context initializeaza starea curenta, lista de controale si numarul starii cu "NoState"
+             </summary>
+        </member>
+        <member name="M:StateChange.Context.Request">
+            <summary>
+            Metoda Request este folosita pentru a solicita incarcarea controalelor
+            </summary>
+        </member>
+        <member name="T:StateChange.MakePlaylistState">
+            <summary>
+            Clasa folosita de context atunci cand se creeaza un playlist
+            </summary>
+        </member>
+        <member name="M:StateChange.MakePlaylistState.Handle(StateChange.Context)">
+            <summary>
+            Functie in care se schimba starea contextului, daca StateNumber nu corespunde, sau se inserează controalele în context, altfel.
+            <param name="context">Contextul asupra caruia se vor aplica operatiile</param>
+            <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
+            </summary>
+        </member>
+        <member name="T:StateChange.MP3PlayerStates">
+            <summary>
+            Enum-ul MP3PlayerStates defineste starile posibile ale obiectului Context
+            Fiecare stare are o valoare numerica asociata, incepand cu 0 pentru NoState
+            Aceste valori numerice sunt utilizate in logica de schimbare a starilor din clasa Context
+            </summary>
+        </member>
+        <member name="F:StateChange.MP3PlayerStates.NoState">
+            <summary>
+            Stare inexistenta, folosita inainte de a se face initializarea
+            </summary>
+        </member>
+        <member name="F:StateChange.MP3PlayerStates.SingleFileState">
+            <summary>
+            Stare pentru redarea unui singur fisier audio
+            </summary>
+        </member>
+        <member name="F:StateChange.MP3PlayerStates.PlaylistState">
+            <summary>
+            Stare pentru redarea unei liste de fisiere audio
+            </summary>
+        </member>
+        <member name="F:StateChange.MP3PlayerStates.MakePlaylistState">
+            <summary>
+            Stare pentru crearea unei liste de fisiere audio
+            </summary>
+        </member>
+        <member name="F:StateChange.MP3PlayerStates.EditPlaylistState">
+            <summary>
+            Stare pentru editarea unei liste de fisiere audio
+            </summary>
+        </member>
+        <member name="F:StateChange.MP3PlayerStates.RadioState">
+            <summary>
+            Stare pentru redarea unui post de radio
+            </summary>
+        </member>
+        <member name="T:StateChange.PlaylistState">
+            <summary>
+            Stare folosita de context atunci cand se reda un playlist
+            </summary>
+        </member>
+        <member name="M:StateChange.PlaylistState.Handle(StateChange.Context)">
+            <summary>
+            Functie in care se schimba starea contextului, daca StateNumber nu corespunde sau se inserează controalele în context dacă există corespondența.
+            <param name="context">Contextul asupra caruia se vor aplica operatiile</param>
+            <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
+            </summary>
+        </member>
+        <member name="T:StateChange.SingleFileState">
+            <summary>
+            Stare folosita de context atunci cand se reda un singur fisier
+            </summary>
+        </member>
+        <member name="M:StateChange.SingleFileState.Handle(StateChange.Context)">
+            <summary>
+            Functie in care se schimba starea contextului, daca StateNumber nu corespunde sau se inserează controalele în context dacă există corespondența.
+            <param name="context">Contextul asupra caruia se vor aplica operatiile</param>
+            <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
+            </summary>
+        </member>
+        <member name="T:StateChange.IState">
+            <summary>
+            Interfata folosita de context pentru a-și schimba comportamentul
+            </summary>
+        </member>
+        <member name="M:StateChange.IState.Handle(StateChange.Context)">
+            <summary>
+            Functie implementata in clasele derivate
+            <param name="context">Contextul asupra caruia se vor aplica operatiile</param>
+            <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
+            </summary>
+        </member>
+    </members>
+</doc>

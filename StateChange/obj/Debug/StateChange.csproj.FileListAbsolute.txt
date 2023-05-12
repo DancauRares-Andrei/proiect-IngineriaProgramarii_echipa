@@ -7,3 +7,12 @@ C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\bin\Debug\AxInterop.WMP
 C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.csproj.CopyComplete
 C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\obj\Debug\StateChange.csproj.AssemblyReference.cache
 C:\Users\Andrei Rares\source\repos\ProiectIP\StateChange\bin\Debug\StateChange.xml
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\bin\Debug\StateChange.xml
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\bin\Debug\StateChange.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\bin\Debug\StateChange.pdb
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\obj\Debug\StateChange.csproj.AssemblyReference.cache
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\obj\Debug\StateChange.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\obj\Debug\StateChange.csproj.CopyComplete
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\obj\Debug\StateChange.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\StateChange\obj\Debug\StateChange.pdb
