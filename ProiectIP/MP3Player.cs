@@ -64,6 +64,12 @@ namespace ProiectIP
         {
             try
             {
+                //Verificam daca nu se reda un canal de radio.
+                if (this.waveOut != null && this.waveOut.PlaybackState == PlaybackState.Playing)
+                {
+                    //Daca da, il oprim.
+                    this.waveOut.Stop();
+                }
                 openFileDialog.Filter = "Audio file(*.mp3)|*.mp3";
                 if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
@@ -116,6 +122,12 @@ namespace ProiectIP
         {
             try
             {
+                //Verificam daca nu se reda un canal de radio.
+                if (this.waveOut != null && this.waveOut.PlaybackState == PlaybackState.Playing)
+                {
+                    //Daca da, il oprim.
+                    this.waveOut.Stop();
+                }
                 openFileDialog.Filter = "Playlist(*.txt)|*.txt";
                 if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
@@ -307,6 +319,12 @@ namespace ProiectIP
             groupBox.Controls.Clear();
             try
             {
+                //Verificam daca nu se reda un canal de radio.
+                if (this.waveOut != null && this.waveOut.PlaybackState == PlaybackState.Playing)
+                {
+                    //Daca da, il oprim.
+                    this.waveOut.Stop();
+                }
                 if (_context.StateNumber == MP3PlayerStates.SingleFileState || _context.StateNumber == MP3PlayerStates.PlaylistState)
                 {
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
@@ -482,11 +500,13 @@ namespace ProiectIP
 
                 ((ListBox)_context.Controls[0]).DataSource = radioStationList;
                 ((ListBox)_context.Controls[0]).DisplayMember = "Name";
+                ((ListBox)_context.Controls[0]).SelectedIndex = 1;
                 ((ListBox)_context.Controls[0]).SelectedIndexChanged += (radioStationItem, args) =>
                 {
                     var selectedRadio = (RadioStation)((ListBox)_context.Controls[0]).SelectedItem;
                     this.url = selectedRadio.Link;
                 };
+                ((ListBox)_context.Controls[0]).SelectedIndex = 0;
             }
             catch (Exception ex)
             {
