@@ -15,6 +15,7 @@
  *                                                                        *
  **************************************************************************/
 using AxWMPLib;
+using NAudio.Wave;
 using StateChange;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
+
 
 namespace ProiectIP
 {
@@ -52,6 +55,11 @@ namespace ProiectIP
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
+        private WaveOut waveOut;
+        private MediaFoundationReader mediaFoundationReader;
+        private string url;
+
         private void deschidereFisierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -370,6 +378,120 @@ namespace ProiectIP
             ((TextBox)context.Controls[2]).Size = new System.Drawing.Size(770, 300);
             ((Button)context.Controls[0]).Click += AddButtonClick;
             ((Button)context.Controls[1]).Click += SaveButtonClick;
+        }
+
+        private void operatiiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void InitializeRadioContext(Context context)
+        {
+            context.StateNumber = MP3PlayerStates.RadioState;
+            context.Request();
+            context.Controls[1].Text = "Play";
+            context.Controls[2].Text = "Stop";
+            context.Controls[2].Enabled = false;
+
+            _context.Controls[0].Location = new System.Drawing.Point(100, 20);
+            _context.Controls[0].Size = new System.Drawing.Size(600, 200);
+
+            _context.Controls[1].Location = new System.Drawing.Point(100, 300);
+            _context.Controls[1].Size = new System.Drawing.Size(150, 50);
+
+            _context.Controls[2].Location = new System.Drawing.Point(550, 300);
+            _context.Controls[2].Size = new System.Drawing.Size(150, 50);
+            ((Button)context.Controls[1]).Click += PlayButtonClick;
+            ((Button)context.Controls[2]).Click += StopButtonClick;
+        }
+
+        /// <summary>
+        /// Functie apelata atunci cand se apasa pe butonul play din starea RadioState
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlayButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                //Verificam daca nu se reda un canal de radio.
+                if (this.waveOut != null && this.waveOut.PlaybackState == PlaybackState.Playing)
+                {
+                    //Daca da, il oprim.
+                    this.waveOut.Stop();
+                }
+                this.waveOut = new WaveOut();
+                this.mediaFoundationReader = new MediaFoundationReader(this.url);
+                this.waveOut.Init(mediaFoundationReader);
+                this.waveOut.Play();
+                _context.Controls[2].Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Functie apelata atunci cand se apasa pe butonul stop din starea RadioState
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StopButtonClick(object sender, EventArgs e)
+        {
+            try { 
+                this.waveOut.Stop();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Functie apelata cand se apasa "Radio"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void radioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Adaugam intr-o lista toate posturile de radio.
+            List<RadioStation> radioStationList = new List<RadioStation>
+            {
+            new RadioStation("Radio Paradise - Main Mix", "http://stream.radioparadise.com/aac-320"),
+            new RadioStation("Radio Paradise - Rock Mix", "http://stream.radioparadise.com/rock-320"),
+            new RadioStation("Radio Paradise - Mellow Mix", "http://stream.radioparadise.com/mellow-320"),
+            new RadioStation("Radio Paradise - Global Mix", "http://stream.radioparadise.com/global-320"),
+            new RadioStation("JazzFM UK", "http://radio.canstream.co.uk:8007/live.mp3"),
+            new RadioStation("KissFM", "https://astreaming.edi.ro:8443/EuropaFM_aac"),
+            new RadioStation("MagicFM", "https://live.magicfm.ro:8443/magicfm.aacp"),
+            new RadioStation("ProFM", "https://edge126.rcs-rds.ro/profm/profm.mp3"),
+            new RadioStation("Radio ZU", "http://zuicast.digitalag.ro:9420/zu"),
+            new RadioStation("DigiFM", "http://edge76.rdsnet.ro:84/digifm/digifm.mp3")
+            };
+            groupBox.Controls.Clear();
+
+            try
+            {
+                _context.StateNumber = MP3PlayerStates.RadioState;
+                _context.Request();
+                InitializeRadioContext(_context);
+                groupBox.Controls.Add(_context.Controls[0]);
+                groupBox.Controls.Add(_context.Controls[1]);
+                groupBox.Controls.Add(_context.Controls[2]);
+
+                ((ListBox)_context.Controls[0]).DataSource = radioStationList;
+                ((ListBox)_context.Controls[0]).DisplayMember = "Name";
+                ((ListBox)_context.Controls[0]).SelectedIndexChanged += (radioStationItem, args) =>
+                {
+                    var selectedRadio = (RadioStation)((ListBox)_context.Controls[0]).SelectedItem;
+                    this.url = selectedRadio.Link;
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

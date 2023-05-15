@@ -53,7 +53,7 @@ namespace StateChange
                 case MP3PlayerStates.PlaylistState:context.State = new PlaylistState(); break;
                 case MP3PlayerStates.MakePlaylistState:context.State = new MakePlaylistState();break;
                // case MP3PlayerStates.EditPlaylistState: context.State = new EditPlaylistState(); break;
-               // case MP3PlayerStates.RadioState: context.State = new RadioState(); break;
+                case MP3PlayerStates.RadioState: context.State = new RadioState(); break;
             }
             return false;
         }

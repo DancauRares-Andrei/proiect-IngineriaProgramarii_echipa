@@ -95,6 +95,18 @@
             <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
             </summary>
         </member>
+        <member name="T:StateChange.RadioState">
+            <summary>
+            Clasa folosita de context atunci cand se apasa butonul Radio
+            </summary>
+        </member>
+        <member name="M:StateChange.RadioState.Handle(StateChange.Context)">
+            <summary>
+            Functie in care se schimba starea contextului, daca StateNumber nu corespunde, sau se inserează controalele în context, altfel.
+            <param name="context">Contextul asupra caruia se vor aplica operatiile</param>
+            <returns>Returneaza true daca starea este valida sau false daca starea necesita o schimbare</returns>
+            </summary>   
+        </member>
         <member name="T:StateChange.SingleFileState">
             <summary>
             Stare folosita de context atunci cand se reda un singur fisier

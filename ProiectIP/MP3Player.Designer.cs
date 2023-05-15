@@ -37,6 +37,7 @@ namespace ProiectIP
             this.deschiderePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iesireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.radioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -46,7 +47,8 @@ namespace ProiectIP
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.operatiiToolStripMenuItem});
+            this.operatiiToolStripMenuItem,
+            this.radioToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(834, 24);
@@ -63,6 +65,7 @@ namespace ProiectIP
             this.operatiiToolStripMenuItem.Name = "operatiiToolStripMenuItem";
             this.operatiiToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.operatiiToolStripMenuItem.Text = "Meniu";
+            this.operatiiToolStripMenuItem.Click += new System.EventHandler(this.operatiiToolStripMenuItem_Click);
             // 
             // deschidereFisierToolStripMenuItem
             // 
@@ -91,6 +94,13 @@ namespace ProiectIP
             this.iesireToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.iesireToolStripMenuItem.Text = "Iesire";
             this.iesireToolStripMenuItem.Click += new System.EventHandler(this.iesireToolStripMenuItem_Click);
+            // 
+            // radioToolStripMenuItem
+            // 
+            this.radioToolStripMenuItem.Name = "radioToolStripMenuItem";
+            this.radioToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.radioToolStripMenuItem.Text = "Radio";
+            this.radioToolStripMenuItem.Click += new System.EventHandler(this.radioToolStripMenuItem_Click);
             // 
             // groupBox
             // 
@@ -134,6 +144,7 @@ namespace ProiectIP
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ToolStripMenuItem crearePlaylistToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem radioToolStripMenuItem;
     }
 }
 

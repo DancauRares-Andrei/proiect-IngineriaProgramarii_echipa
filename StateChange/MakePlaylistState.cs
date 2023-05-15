@@ -59,7 +59,7 @@ namespace StateChange
                     //context.State = new EditPlaylistState();
                     break;
                 case MP3PlayerStates.RadioState:
-                    //context.State = new RadioState();
+                    context.State = new RadioState();
                     break;
             }
 
