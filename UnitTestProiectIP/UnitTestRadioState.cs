@@ -1,10 +1,10 @@
 ﻿/**************************************************************************
  *                                                                        *
- *  File:        UnitTestMakePlaylistState.cs                             *
+ *  File:        UnitTestRadioState.cs                                    *
  *  Copyright:   (c) 2023, Ganea Luiza-Andreea                            *
  *  E-mail:      luiza-andreea.ganea@student.tuiasi.ro                    *
  *  Description: Clasa destinata testarii unitatilor clasei               *
- *              MakePlaylistState.cs                                      *
+ *              RadioState.cs                                             *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -15,30 +15,27 @@
  *                                                                        *
  **************************************************************************/
 
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StateChange;
+using System;
 
 namespace UnitTestProiectIP
 {
-    /// <summary>
-    /// Clasa destinata testarii unitatilor clasei UnitTestMakePlaylistState.cs
-    /// </summary>
     [TestClass]
-    public class UnitTestMakePlaylistState
+    public class UnitTestRadioState
     {
         /// <summary>
-        /// Testarea starii curente (MakePlaylistState)
+        /// Testarea starii curente (RadioState)
         /// </summary>
         [TestMethod]
-        public void HandleMakePlaylistStateTrue()
+        public void HandleRadioStateTrue()
         {
-            MakePlaylistState makePlaylistState = new MakePlaylistState();
+            RadioState radioState = new RadioState();
             Context context = new Context();
 
-            context.StateNumber = MP3PlayerStates.MakePlaylistState;
+            context.StateNumber = MP3PlayerStates.RadioState;
 
-            bool result = makePlaylistState.Handle(context);
+            bool result = radioState.Handle(context);
 
             Assert.IsTrue(result);
             Assert.AreEqual(3, context.Controls.Count);
@@ -48,32 +45,14 @@ namespace UnitTestProiectIP
         /// Testarea schimbarii starii, a tipului variabilei State a contextului, a numarului de controale din context
         /// </summary>
         [TestMethod]
-        public void HandleMakePlaylistStateFalseSingleFileState()
+        public void HandleRadioStateFalsePlaylistState()
         {
-            MakePlaylistState makePlaylistState = new MakePlaylistState();
-            Context context = new Context();
-
-            context.StateNumber = MP3PlayerStates.SingleFileState;
-
-            bool result = makePlaylistState.Handle(context);
-
-            Assert.IsFalse(result);
-            Assert.IsInstanceOfType(context.State, typeof(SingleFileState));
-            Assert.AreEqual(0, context.Controls.Count);
-        }
-
-        /// <summary>
-        /// Testarea schimbarii starii, a tipului variabilei State a contextului, a numarului de controale din context
-        /// </summary>
-        [TestMethod]
-        public void HandleMakePlaylistStateFalsePlaylistState()
-        {
-            MakePlaylistState makePlaylistState = new MakePlaylistState();
+            RadioState radioState = new RadioState();
             Context context = new Context();
 
             context.StateNumber = MP3PlayerStates.PlaylistState;
 
-            bool result = makePlaylistState.Handle(context);
+            bool result = radioState.Handle(context);
 
             Assert.IsFalse(result);
             Assert.IsInstanceOfType(context.State, typeof(PlaylistState));
@@ -84,18 +63,37 @@ namespace UnitTestProiectIP
         /// Testarea schimbarii starii, a tipului variabilei State a contextului, a numarului de controale din context
         /// </summary>
         [TestMethod]
-        public void HandleMakePlaylistStateFalseRadioState()
+        public void HandleRadioStateFalseMakePlaylistState()
         {
-            MakePlaylistState makePlaylistState = new MakePlaylistState();
+            RadioState radioState = new RadioState();
             Context context = new Context();
 
-            context.StateNumber = MP3PlayerStates.RadioState;
+            context.StateNumber = MP3PlayerStates.MakePlaylistState;
 
-            bool result = makePlaylistState.Handle(context);
+            bool result = radioState.Handle(context);
 
             Assert.IsFalse(result);
-            Assert.IsInstanceOfType(context.State, typeof(RadioState));
+            Assert.IsInstanceOfType(context.State, typeof(MakePlaylistState));
+            Assert.AreEqual(0, context.Controls.Count);
+        }
+
+        /// <summary>
+        /// Testarea schimbarii starii, a tipului variabilei State a contextului, a numarului de controale din context
+        /// </summary>
+        [TestMethod]
+        public void HandleRadioStateFalseSingleFileState()
+        {
+            RadioState radioState = new RadioState();
+            Context context = new Context();
+
+            context.StateNumber = MP3PlayerStates.SingleFileState;
+
+            bool result = radioState.Handle(context);
+
+            Assert.IsFalse(result);
+            Assert.IsInstanceOfType(context.State, typeof(SingleFileState));
             Assert.AreEqual(0, context.Controls.Count);
         }
     }
 }
+

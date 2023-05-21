@@ -30,7 +30,7 @@ namespace StateChange
     /// <summary>
     /// Clasa folosita de context atunci cand se apasa butonul Radio
     /// </summary>
-    internal class RadioState : IState
+    public class RadioState : IState
     {
         /// <summary>
         /// Functie in care se schimba starea contextului, daca StateNumber nu corespunde, sau se inserează controalele în context, altfel.
@@ -54,8 +54,10 @@ namespace StateChange
             {
                 case MP3PlayerStates.PlaylistState: context.State = new PlaylistState(); break;
                 case MP3PlayerStates.MakePlaylistState: context.State = new MakePlaylistState(); break;
-               // case MP3PlayerStates.EditPlaylistState: context.State = new EditPlaylistState(); break;
-                case MP3PlayerStates.RadioState: context.State = new RadioState(); break;
+                // case MP3PlayerStates.EditPlaylistState: context.State = new EditPlaylistState(); break;
+                //case MP3PlayerStates.RadioState: context.State = new RadioState(); break;
+                case MP3PlayerStates.SingleFileState: context.State = new SingleFileState(); break;
+
             }
             return false;
 

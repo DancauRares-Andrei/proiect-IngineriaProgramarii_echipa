@@ -21,3 +21,9 @@ C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\obj
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\obj\Debug\UnitTestProiectIP.csproj.CopyComplete
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\obj\Debug\UnitTestProiectIP.dll
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\obj\Debug\UnitTestProiectIP.pdb
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\bin\Debug\NAudio.WinForms.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\bin\Debug\NAudio.Wasapi.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\bin\Debug\NAudio.Core.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\bin\Debug\NAudio.WinMM.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\UnitTestProiectIP\bin\Debug\Microsoft.Win32.Registry.xml

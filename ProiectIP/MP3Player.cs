@@ -411,14 +411,14 @@ namespace ProiectIP
             context.Controls[2].Text = "Stop";
             context.Controls[2].Enabled = false;
 
-            _context.Controls[0].Location = new System.Drawing.Point(100, 20);
-            _context.Controls[0].Size = new System.Drawing.Size(600, 200);
+            context.Controls[0].Location = new System.Drawing.Point(100, 20);
+            context.Controls[0].Size = new System.Drawing.Size(600, 200);
 
-            _context.Controls[1].Location = new System.Drawing.Point(100, 300);
-            _context.Controls[1].Size = new System.Drawing.Size(150, 50);
+            context.Controls[1].Location = new System.Drawing.Point(100, 300);
+            context.Controls[1].Size = new System.Drawing.Size(150, 50);
 
-            _context.Controls[2].Location = new System.Drawing.Point(550, 300);
-            _context.Controls[2].Size = new System.Drawing.Size(150, 50);
+            context.Controls[2].Location = new System.Drawing.Point(550, 300);
+            context.Controls[2].Size = new System.Drawing.Size(150, 50);
             ((Button)context.Controls[1]).Click += PlayButtonClick;
             ((Button)context.Controls[2]).Click += StopButtonClick;
         }

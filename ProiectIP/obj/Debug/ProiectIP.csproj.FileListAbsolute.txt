@@ -43,7 +43,6 @@ C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\obj\Debug\P
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\obj\Debug\ProiectIP.csproj.CopyComplete
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\obj\Debug\ProiectIP.exe
 C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\obj\Debug\ProiectIP.pdb
-C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\StateChange.xml
 C:\Users\Rares\Desktop\ProiectIPfinal\ProiectIP2023\ProiectIP\bin\Debug\ProiectIP.exe.config
 C:\Users\Rares\Desktop\ProiectIPfinal\ProiectIP2023\ProiectIP\bin\Debug\ProiectIP.xml
 C:\Users\Rares\Desktop\ProiectIPfinal\ProiectIP2023\ProiectIP\bin\Debug\ProiectIP.exe
@@ -82,3 +81,18 @@ C:\Users\Rares\Desktop\ProiectIPfinal\ProiectIP2023\ProiectIP\obj\Debug\ProiectI
 C:\Users\Rares\Desktop\ProiectIPfinal\ProiectIP2023\ProiectIP\obj\Debug\ProiectIP.exe
 C:\Users\Rares\Desktop\ProiectIPfinal\ProiectIP2023\ProiectIP\obj\Debug\ProiectIP.pdb
 C:\Users\Rares\Desktop\ProiectIPfinal\ProiectIP2023\ProiectIP\bin\Debug\StateChange.xml
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\NAudio.Asio.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\NAudio.Core.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\NAudio.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\NAudio.Midi.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\NAudio.Wasapi.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\NAudio.WinForms.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\NAudio.WinMM.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\System.Security.AccessControl.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\Microsoft.Win32.Registry.xml
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\NAudio.xml
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\System.Security.AccessControl.xml
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\LENOVO\Desktop\IP\Proiect\VARIANTA2\ProiectIP2023\ProiectIP\bin\Debug\StateChange.xml

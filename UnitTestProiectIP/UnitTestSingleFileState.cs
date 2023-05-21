@@ -77,5 +77,23 @@ namespace UnitTestProiectIP
             Assert.IsInstanceOfType(context.State, typeof(MakePlaylistState));
             Assert.AreEqual(0, context.Controls.Count);
         }
+
+        /// <summary>
+        /// Testarea schimbarii starii, a tipului variabilei State a contextului, a numarului de controale din context
+        /// </summary>
+        [TestMethod]
+        public void HandleSingleFileStateFalseRadioState()
+        {
+            SingleFileState singleFileState = new SingleFileState();
+            Context context = new Context();
+
+            context.StateNumber = MP3PlayerStates.RadioState;
+
+            bool result = singleFileState.Handle(context);
+
+            Assert.IsFalse(result);
+            Assert.IsInstanceOfType(context.State, typeof(RadioState));
+            Assert.AreEqual(0, context.Controls.Count);
+        }
     }
 }

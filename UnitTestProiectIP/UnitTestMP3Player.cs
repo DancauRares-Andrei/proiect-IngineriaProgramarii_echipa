@@ -40,5 +40,16 @@ namespace UnitTestProiectIP
             Assert.AreEqual(3, context.Controls.Count);
             Assert.AreEqual(MP3PlayerStates.MakePlaylistState, context.StateNumber);
         }
+
+        [TestMethod]
+        public void TestInitializeRadioContext()
+        {
+            MP3Player mp3player = new MP3Player();
+            Context context = new Context();
+
+            mp3player.InitializeRadioContext(context);
+            Assert.AreEqual(3, context.Controls.Count);
+            Assert.AreEqual(MP3PlayerStates.RadioState, context.StateNumber);
+        }
     }
 }

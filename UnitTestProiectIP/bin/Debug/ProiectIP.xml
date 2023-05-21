@@ -19,7 +19,7 @@
             Constructor ce initializeaza componentele Form-ului si apeleaza contructorul contextului
             </summary>
         </member>
-        <member name="M:ProiectIP.MP3Player.deschidereFisierToolStripMenuItem_Click(System.Object,System.EventArgs)">
+        <member name="F:ProiectIP.MP3Player.waveOut">
             <summary>
             Functie apelata atunci cand se apasa "Deschidere fisier"
             </summary>
@@ -89,6 +89,27 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:ProiectIP.MP3Player.PlayButtonClick(System.Object,System.EventArgs)">
+            <summary>
+            Functie apelata atunci cand se apasa pe butonul play din starea RadioState
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProiectIP.MP3Player.StopButtonClick(System.Object,System.EventArgs)">
+            <summary>
+            Functie apelata atunci cand se apasa pe butonul stop din starea RadioState
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProiectIP.MP3Player.radioToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Functie apelata cand se apasa "Radio"
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="F:ProiectIP.MP3Player.components">
             <summary>
             Required designer variable.
@@ -109,6 +130,11 @@
         <member name="M:ProiectIP.Program.Main">
             <summary>
             The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:ProiectIP.RadioStation">
+            <summary>
+            Clasa folosita pentru a descrie un post de radio.
             </summary>
         </member>
         <member name="T:ProiectIP.Properties.Resources">
