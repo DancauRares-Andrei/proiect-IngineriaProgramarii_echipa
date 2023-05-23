@@ -41,6 +41,7 @@ namespace ProiectIP
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.editarePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +62,8 @@ namespace ProiectIP
             this.deschidereFisierToolStripMenuItem,
             this.deschiderePlaylistToolStripMenuItem,
             this.crearePlaylistToolStripMenuItem,
-            this.iesireToolStripMenuItem});
+            this.iesireToolStripMenuItem,
+            this.editarePlaylistToolStripMenuItem});
             this.operatiiToolStripMenuItem.Name = "operatiiToolStripMenuItem";
             this.operatiiToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.operatiiToolStripMenuItem.Text = "Meniu";
@@ -70,28 +72,28 @@ namespace ProiectIP
             // deschidereFisierToolStripMenuItem
             // 
             this.deschidereFisierToolStripMenuItem.Name = "deschidereFisierToolStripMenuItem";
-            this.deschidereFisierToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.deschidereFisierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deschidereFisierToolStripMenuItem.Text = "Deschidere fisier";
             this.deschidereFisierToolStripMenuItem.Click += new System.EventHandler(this.deschidereFisierToolStripMenuItem_Click);
             // 
             // deschiderePlaylistToolStripMenuItem
             // 
             this.deschiderePlaylistToolStripMenuItem.Name = "deschiderePlaylistToolStripMenuItem";
-            this.deschiderePlaylistToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.deschiderePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deschiderePlaylistToolStripMenuItem.Text = "Deschidere playlist";
             this.deschiderePlaylistToolStripMenuItem.Click += new System.EventHandler(this.deschiderePlaylistToolStripMenuItem_Click);
             // 
             // crearePlaylistToolStripMenuItem
             // 
             this.crearePlaylistToolStripMenuItem.Name = "crearePlaylistToolStripMenuItem";
-            this.crearePlaylistToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.crearePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.crearePlaylistToolStripMenuItem.Text = "Creare playlist";
             this.crearePlaylistToolStripMenuItem.Click += new System.EventHandler(this.crearePlaylistToolStripMenuItem_Click);
             // 
             // iesireToolStripMenuItem
             // 
             this.iesireToolStripMenuItem.Name = "iesireToolStripMenuItem";
-            this.iesireToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.iesireToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iesireToolStripMenuItem.Text = "Iesire";
             this.iesireToolStripMenuItem.Click += new System.EventHandler(this.iesireToolStripMenuItem_Click);
             // 
@@ -113,6 +115,13 @@ namespace ProiectIP
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // editarePlaylistToolStripMenuItem
+            // 
+            this.editarePlaylistToolStripMenuItem.Name = "editarePlaylistToolStripMenuItem";
+            this.editarePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editarePlaylistToolStripMenuItem.Text = "Editare playlist";
+            this.editarePlaylistToolStripMenuItem.Click += new System.EventHandler(this.editarePlaylistToolStripMenuItem_Click);
             // 
             // MP3Player
             // 
@@ -145,6 +154,7 @@ namespace ProiectIP
         private System.Windows.Forms.ToolStripMenuItem crearePlaylistToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolStripMenuItem radioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editarePlaylistToolStripMenuItem;
     }
 }
 
