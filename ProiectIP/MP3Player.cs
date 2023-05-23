@@ -53,6 +53,9 @@ namespace ProiectIP
         /// <summary>
         /// Functie apelata atunci cand se apasa "Deschidere fisier"
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private WaveOut waveOut;
         private MediaFoundationReader mediaFoundationReader;
         private string url;
@@ -128,16 +131,17 @@ namespace ProiectIP
                 openFileDialog.Filter = "Playlist(*.txt)|*.txt";
                 if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
-                List<string> melodii = new List<string>();
-                StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
-                string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                sr.Close();
-                for (int i = 0; i < lvls.Length; i++)
-                    melodii.Add(lvls[i]);
-                // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
-                var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
                 if (_context.StateNumber == MP3PlayerStates.PlaylistState)
                 {
+                    List<string> melodii = new List<string>();
+                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
+                    string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    sr.Close();
+                    for (int i = 0; i < lvls.Length; i++)
+                        melodii.Add(lvls[i]);
+                    // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
+                    var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
+
                     // Setarea DataSource-ului pentru ListBox
                     ((ListBox)_context.Controls[1]).DataSource = files;
 
@@ -163,16 +167,17 @@ namespace ProiectIP
                     groupBox.Controls.Add(_context.Controls[3]);
                     _context.Controls[0].Location = new System.Drawing.Point(6, 27);
                     _context.Controls[0].Size = new System.Drawing.Size(498, 368);
+                    List<string> melodii = new List<string>();
+                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
+                    string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    sr.Close();
+                    for (int i = 0; i < lvls.Length; i++)
+                        melodii.Add(lvls[i]);
                     _context.Controls[1].Location = new System.Drawing.Point(531, 27);
                     _context.Controls[1].Size = new System.Drawing.Size(200, 368);
                     ((ListBox)_context.Controls[1]).HorizontalScrollbar = true;
-                    _context.Controls[2].Text = "Random";
-                    _context.Controls[2].Size = new System.Drawing.Size(66, 17);
-                    _context.Controls[2].Location = new System.Drawing.Point(740, 27);
-                    _context.Controls[3].Text = "Loop";
-                    ((CheckBox)_context.Controls[3]).CheckedChanged += PlaylistLoop_CheckedChanged;
-                    _context.Controls[3].Size = new System.Drawing.Size(66, 17);
-                    _context.Controls[3].Location = new System.Drawing.Point(740, 47);
+                    // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
+                    var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
 
                     // Setarea DataSource-ului pentru ListBox
                     ((ListBox)_context.Controls[1]).DataSource = files;
@@ -185,6 +190,13 @@ namespace ProiectIP
                     ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).PlayStateChange += axWindowsMediaPlayer_PlayStateChange;
+                    _context.Controls[2].Text = "Random";
+                    _context.Controls[2].Size = new System.Drawing.Size(66, 17);
+                    _context.Controls[2].Location = new System.Drawing.Point(740, 27);
+                    _context.Controls[3].Text = "Loop";
+                    ((CheckBox)_context.Controls[3]).CheckedChanged += PlaylistLoop_CheckedChanged;
+                    _context.Controls[3].Size = new System.Drawing.Size(66, 17);
+                    _context.Controls[3].Location = new System.Drawing.Point(740, 47);
                 }
             }
             catch (Exception ex)
@@ -227,15 +239,27 @@ namespace ProiectIP
             {
                 ListBox listBox = (ListBox)sender;
                 int selectedIndex = listBox.SelectedIndex;
-                if (listBox.SelectedIndex > -1)
+                if (listBox.Items.Count > 0)
                 {
-                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)listBox.SelectedItem).Path;
-                    ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.play();
+                    if (listBox.SelectedIndex > -1)
+                    {
+                        ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)listBox.SelectedItem).Path;
+                        if (((ListBox)_context.Controls[1]).Items.Count > 0)
+                        {
+                            ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.play();
+                        }
+                        //   ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.play();
+                    }
+                }
+                else
+                {
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = null;
+                    //Vezi acum
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + "Aici");
             }
         }
         /// <summary>
@@ -294,7 +318,7 @@ namespace ProiectIP
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + "hello");
             }
         }
         /// <summary>
@@ -369,9 +393,7 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
-        /// <summary>
-        /// Functie ce initializeaza contextul la crearea unui playlist
-        /// </summary>
+
         public void InitializeMakePlaylistContext(Context context)
         {
             context.StateNumber = MP3PlayerStates.MakePlaylistState;
@@ -392,9 +414,7 @@ namespace ProiectIP
         {
 
         }
-        /// <summary>
-        /// Functie ce initializeaza contextul pentru starea Radio
-        /// </summary>
+
         public void InitializeRadioContext(Context context)
         {
             context.StateNumber = MP3PlayerStates.RadioState;
@@ -479,11 +499,8 @@ namespace ProiectIP
             new RadioStation("Radio ZU", "http://zuicast.digitalag.ro:9420/zu"),
             new RadioStation("DigiFM", "http://edge76.rdsnet.ro:84/digifm/digifm.mp3")
             };
-            if (_context.StateNumber == MP3PlayerStates.SingleFileState || _context.StateNumber == MP3PlayerStates.PlaylistState)
-            {
-                ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-            }
             groupBox.Controls.Clear();
+
             try
             {
                 _context.StateNumber = MP3PlayerStates.RadioState;
@@ -502,6 +519,172 @@ namespace ProiectIP
                     this.url = selectedRadio.Link;
                 };
                 ((ListBox)_context.Controls[0]).SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void editarePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Verificam daca nu se reda un canal de radio.
+                if (this.waveOut != null && this.waveOut.PlaybackState == PlaybackState.Playing)
+                {
+                    //Daca da, il oprim.
+                    this.waveOut.Stop();
+                }             
+                    groupBox.Controls.Clear();
+                if (_context.StateNumber == MP3PlayerStates.SingleFileState || _context.StateNumber == MP3PlayerStates.PlaylistState || _context.StateNumber == MP3PlayerStates.RadioState)     
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
+                    openFileDialog.Filter = "Playlist(*.txt)|*.txt";
+                    if (openFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                    _context.StateNumber = MP3PlayerStates.EditPlaylistState;
+                    _context.Request();
+                    groupBox.Controls.Add(_context.Controls[0]);
+                    groupBox.Controls.Add(_context.Controls[1]);
+                    groupBox.Controls.Add(_context.Controls[2]);
+                    groupBox.Controls.Add(_context.Controls[3]);
+                    groupBox.Controls.Add(_context.Controls[4]);
+
+
+                _context.Controls[0].Location = new System.Drawing.Point(6, 27);
+                    _context.Controls[0].Size = new System.Drawing.Size(498, 368);
+                    List<string> melodii = new List<string>();
+                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
+                    string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    sr.Close();
+                    for (int i = 0; i < lvls.Length; i++)
+                        melodii.Add(lvls[i]);
+                    _context.Controls[1].Location = new System.Drawing.Point(531, 27);
+                    _context.Controls[1].Size = new System.Drawing.Size(200, 368);
+                    ((ListBox)_context.Controls[1]).HorizontalScrollbar = true;
+                    // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
+                    var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
+
+                    // Setarea DataSource-ului pentru ListBox
+                    ((ListBox)_context.Controls[1]).DataSource = files;
+
+                    // Setarea DisplayMember-ului si ValueMember-ului pentru ListBox
+                    ((ListBox)_context.Controls[1]).DisplayMember = "FileName";
+                    ((ListBox)_context.Controls[1]).ValueMember = "Path";
+
+
+                   ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
+                   ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
+                   ((AxWindowsMediaPlayer)_context.Controls[0]).PlayStateChange += axWindowsMediaPlayer_PlayStateChange;
+
+                    _context.Controls[2].Text = "Add";
+                    _context.Controls[2].Size = new System.Drawing.Size(66, 20);
+                    _context.Controls[2].Location = new System.Drawing.Point(740, 27);
+                ((Button)_context.Controls[2]).Click += AddButtonClickEditPlaylist;
+                _context.Controls[3].Text = "Delete";
+                    _context.Controls[3].Size = new System.Drawing.Size(66, 20);
+                    _context.Controls[3].Location = new System.Drawing.Point(740, 55);
+                ((Button)_context.Controls[3]).Click += RemoveButtonClickEditPlaylist;
+                _context.Controls[4].Text = "Save";
+                _context.Controls[4].Size = new System.Drawing.Size(66, 20);
+                _context.Controls[4].Location = new System.Drawing.Point(740, 83);
+                ((Button)_context.Controls[4]).Click += SaveButtonClickEditPlaylist;
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "aici frt");
+            }
+        }
+
+        private void SaveButtonClickEditPlaylist(object sender, EventArgs e)
+        {
+
+            try
+            {
+                saveFileDialog.Filter = "Playlist(*.txt)|*.txt";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        foreach (var item in ((ListBox)_context.Controls[1]).Items)
+                        {
+                            string path = ((dynamic)item).Path;
+                            writer.WriteLine(path);
+                        }
+                    }
+                  //  groupBox.Controls.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void RemoveButtonClickEditPlaylist(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedIndex = ((ListBox)_context.Controls[1]).SelectedIndex;
+
+                List<object> currentList = new List<object>();
+                ListBox listBox = (ListBox)_context.Controls[1];
+                foreach (object item in ((ListBox)_context.Controls[1]).Items)
+                {
+                    currentList.Add(item);
+                }
+                currentList.RemoveAt(selectedIndex);
+
+                ((ListBox)_context.Controls[1]).DataSource = null;
+                ((ListBox)_context.Controls[1]).DataSource = currentList;
+                ((ListBox)_context.Controls[1]).DisplayMember = "FileName";
+                ((ListBox)_context.Controls[1]).ValueMember = "Path";
+
+                if (listBox.Items.Count == 0)
+                {
+                    if (selectedIndex == 0)
+                    { 
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();  
+                        ((ListBox)_context.Controls[1]).DataSource = null;
+                        listBox = null;
+                        ((AxWindowsMediaPlayer)_context.Controls[0]).URL = "";
+                        ((AxWindowsMediaPlayer)_context.Controls[0]).currentPlaylist.clear();
+                        ((ListBox)_context.Controls[1]).DisplayMember = "";
+                        ((ListBox)_context.Controls[1]).ValueMember = "";
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void AddButtonClickEditPlaylist(object sender, EventArgs e)
+        {
+            try
+            {
+                openFileDialog.Filter = "Audio file(*.mp3)|*.mp3";
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                List<object> currentList = new List<object>();
+
+                foreach (object item in ((ListBox)_context.Controls[1]).Items)
+                {
+                    currentList.Add(item);
+                }
+                var newItem = new { Path = openFileDialog.FileName, FileName = Path.GetFileName(openFileDialog.FileName) };
+                if (!currentList.Contains(newItem))
+                    currentList.Add(newItem);
+
+                ((ListBox)_context.Controls[1]).DataSource = null;
+                ((ListBox)_context.Controls[1]).DataSource = currentList;
+                ((ListBox)_context.Controls[1]).DisplayMember = "FileName";
+                ((ListBox)_context.Controls[1]).ValueMember = "Path";
             }
             catch (Exception ex)
             {
