@@ -19,12 +19,10 @@
             Constructor ce initializeaza componentele Form-ului si apeleaza contructorul contextului
             </summary>
         </member>
-        <member name="F:ProiectIP.MP3Player.waveOut">
+        <member name="M:ProiectIP.MP3Player.deschidereFisierToolStripMenuItem_Click(System.Object,System.EventArgs)">
             <summary>
             Functie apelata atunci cand se apasa "Deschidere fisier"
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
         <member name="M:ProiectIP.MP3Player.iesireToolStripMenuItem_Click(System.Object,System.EventArgs)">
             <summary>
@@ -88,6 +86,16 @@
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
+        </member>
+        <member name="M:ProiectIP.MP3Player.InitializeMakePlaylistContext(StateChange.Context)">
+            <summary>
+            Functie ce initializeaza contextul la crearea unui playlist
+            </summary>
+        </member>
+        <member name="M:ProiectIP.MP3Player.InitializeRadioContext(StateChange.Context)">
+            <summary>
+            Functie ce initializeaza contextul pentru starea Radio
+            </summary>
         </member>
         <member name="M:ProiectIP.MP3Player.PlayButtonClick(System.Object,System.EventArgs)">
             <summary>

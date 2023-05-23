@@ -50,16 +50,14 @@ namespace ProiectIP
             InitializeComponent();
             _context = new Context();
         }
-        /// <summary>
-        /// Functie apelata atunci cand se apasa "Deschidere fisier"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        
 
         private WaveOut waveOut;
         private MediaFoundationReader mediaFoundationReader;
         private string url;
-
+        /// <summary>
+        /// Functie apelata atunci cand se apasa "Deschidere fisier"
+        /// </summary>
         private void deschidereFisierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -131,17 +129,16 @@ namespace ProiectIP
                 openFileDialog.Filter = "Playlist(*.txt)|*.txt";
                 if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
+                List<string> melodii = new List<string>();
+                StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
+                string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                sr.Close();
+                for (int i = 0; i < lvls.Length; i++)
+                    melodii.Add(lvls[i]);
+                // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
+                var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
                 if (_context.StateNumber == MP3PlayerStates.PlaylistState)
                 {
-                    List<string> melodii = new List<string>();
-                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
-                    string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    sr.Close();
-                    for (int i = 0; i < lvls.Length; i++)
-                        melodii.Add(lvls[i]);
-                    // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
-                    var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
-
                     // Setarea DataSource-ului pentru ListBox
                     ((ListBox)_context.Controls[1]).DataSource = files;
 
@@ -167,17 +164,16 @@ namespace ProiectIP
                     groupBox.Controls.Add(_context.Controls[3]);
                     _context.Controls[0].Location = new System.Drawing.Point(6, 27);
                     _context.Controls[0].Size = new System.Drawing.Size(498, 368);
-                    List<string> melodii = new List<string>();
-                    StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
-                    string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    sr.Close();
-                    for (int i = 0; i < lvls.Length; i++)
-                        melodii.Add(lvls[i]);
                     _context.Controls[1].Location = new System.Drawing.Point(531, 27);
                     _context.Controls[1].Size = new System.Drawing.Size(200, 368);
                     ((ListBox)_context.Controls[1]).HorizontalScrollbar = true;
-                    // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
-                    var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
+                    _context.Controls[2].Text = "Random";
+                    _context.Controls[2].Size = new System.Drawing.Size(66, 17);
+                    _context.Controls[2].Location = new System.Drawing.Point(740, 27);
+                    _context.Controls[3].Text = "Loop";
+                    ((CheckBox)_context.Controls[3]).CheckedChanged += PlaylistLoop_CheckedChanged;
+                    _context.Controls[3].Size = new System.Drawing.Size(66, 17);
+                    _context.Controls[3].Location = new System.Drawing.Point(740, 47);
 
                     // Setarea DataSource-ului pentru ListBox
                     ((ListBox)_context.Controls[1]).DataSource = files;
@@ -190,13 +186,6 @@ namespace ProiectIP
                     ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                     ((AxWindowsMediaPlayer)_context.Controls[0]).PlayStateChange += axWindowsMediaPlayer_PlayStateChange;
-                    _context.Controls[2].Text = "Random";
-                    _context.Controls[2].Size = new System.Drawing.Size(66, 17);
-                    _context.Controls[2].Location = new System.Drawing.Point(740, 27);
-                    _context.Controls[3].Text = "Loop";
-                    ((CheckBox)_context.Controls[3]).CheckedChanged += PlaylistLoop_CheckedChanged;
-                    _context.Controls[3].Size = new System.Drawing.Size(66, 17);
-                    _context.Controls[3].Location = new System.Drawing.Point(740, 47);
                 }
             }
             catch (Exception ex)
@@ -393,7 +382,9 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Functie ce initializeaza contextul la crearea unui playlist
+        /// </summary>
         public void InitializeMakePlaylistContext(Context context)
         {
             context.StateNumber = MP3PlayerStates.MakePlaylistState;
@@ -414,7 +405,9 @@ namespace ProiectIP
         {
 
         }
-
+        /// <summary>
+        /// Functie ce initializeaza contextul pentru starea Radio
+        /// </summary>
         public void InitializeRadioContext(Context context)
         {
             context.StateNumber = MP3PlayerStates.RadioState;

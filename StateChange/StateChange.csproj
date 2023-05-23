@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="EditPlaylistState.cs" />
     <Compile Include="MakePlaylistState.cs" />
     <Compile Include="MP3PlayerStates.cs" />
     <Compile Include="PlaylistState.cs" />
