@@ -487,8 +487,11 @@ namespace ProiectIP
             new RadioStation("Radio ZU", "http://zuicast.digitalag.ro:9420/zu"),
             new RadioStation("DigiFM", "http://edge76.rdsnet.ro:84/digifm/digifm.mp3")
             };
+            if (_context.StateNumber == MP3PlayerStates.SingleFileState || _context.StateNumber == MP3PlayerStates.PlaylistState)
+            {
+                ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
+            }
             groupBox.Controls.Clear();
-
             try
             {
                 _context.StateNumber = MP3PlayerStates.RadioState;
