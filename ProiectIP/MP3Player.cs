@@ -53,9 +53,6 @@ namespace ProiectIP
         /// <summary>
         /// Functie apelata atunci cand se apasa "Deschidere fisier"
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
         private WaveOut waveOut;
         private MediaFoundationReader mediaFoundationReader;
         private string url;
@@ -372,7 +369,9 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Functie ce initializeaza contextul la crearea unui playlist
+        /// </summary>
         public void InitializeMakePlaylistContext(Context context)
         {
             context.StateNumber = MP3PlayerStates.MakePlaylistState;
@@ -393,7 +392,9 @@ namespace ProiectIP
         {
 
         }
-
+        /// <summary>
+        /// Functie ce initializeaza contextul pentru starea Radio
+        /// </summary>
         public void InitializeRadioContext(Context context)
         {
             context.StateNumber = MP3PlayerStates.RadioState;
