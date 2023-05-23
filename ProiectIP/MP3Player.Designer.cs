@@ -125,7 +125,7 @@ namespace ProiectIP
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.Name = "MP3Player";
-            this.Text = "MP3 Player";
+            this.Text = "RhythmIt";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
