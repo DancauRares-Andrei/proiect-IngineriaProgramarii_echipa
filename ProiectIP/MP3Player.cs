@@ -141,10 +141,6 @@ namespace ProiectIP
                 var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
                 if (_context.StateNumber == MP3PlayerStates.PlaylistState)
                 {
-                    groupBox.Controls.Add(_context.Controls[0]);
-                    groupBox.Controls.Add(_context.Controls[1]);
-                    groupBox.Controls.Add(_context.Controls[2]);
-                    groupBox.Controls.Add(_context.Controls[3]);
                     // Setarea DataSource-ului pentru ListBox
                     ((ListBox)_context.Controls[1]).DataSource = files;
 
