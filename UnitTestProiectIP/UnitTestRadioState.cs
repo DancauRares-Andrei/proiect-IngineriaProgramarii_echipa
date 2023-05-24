@@ -41,8 +41,12 @@ namespace UnitTestProiectIP
             Assert.AreEqual(3, context.Controls.Count);
         }
 
+        //Testarea schimbarii starii curente:
+
         /// <summary>
-        /// Testarea schimbarii starii, a tipului variabilei State a contextului, a numarului de controale din context
+        /// Testarea trecerii din starea curenta in starea PlaylistState. 
+        /// Testarea tipului variabilei State a contextului
+        /// Testarea numarului de controale din context
         /// </summary>
         [TestMethod]
         public void HandleRadioStateFalsePlaylistState()
@@ -60,7 +64,9 @@ namespace UnitTestProiectIP
         }
 
         /// <summary>
-        /// Testarea schimbarii starii, a tipului variabilei State a contextului, a numarului de controale din context
+        /// Testarea trecerii din starea curenta in starea MakePlaylistState. 
+        /// Testarea tipului variabilei State a contextului
+        /// Testarea numarului de controale din context
         /// </summary>
         [TestMethod]
         public void HandleRadioStateFalseMakePlaylistState()
@@ -78,7 +84,9 @@ namespace UnitTestProiectIP
         }
 
         /// <summary>
-        /// Testarea schimbarii starii, a tipului variabilei State a contextului, a numarului de controale din context
+        /// Testarea trecerii din starea curenta in starea SingleFileState. 
+        /// Testarea tipului variabilei State a contextului
+        /// Testarea numarului de controale din context
         /// </summary>
         [TestMethod]
         public void HandleRadioStateFalseSingleFileState()
@@ -92,6 +100,27 @@ namespace UnitTestProiectIP
 
             Assert.IsFalse(result);
             Assert.IsInstanceOfType(context.State, typeof(SingleFileState));
+            Assert.AreEqual(0, context.Controls.Count);
+        }
+
+
+        /// <summary>
+        /// Testarea trecerii din starea curenta in starea EditPlaylistState. 
+        /// Testarea tipului variabilei State a contextului
+        /// Testarea numarului de controale din context
+        /// </summary>
+        [TestMethod]
+        public void HandleRadioStateFalseEditPlaylistState()
+        {
+            RadioState radioState = new RadioState();
+            Context context = new Context();
+
+            context.StateNumber = MP3PlayerStates.EditPlaylistState;
+
+            bool result = radioState.Handle(context);
+
+            Assert.IsFalse(result);
+            Assert.IsInstanceOfType(context.State, typeof(EditPlaylistState));
             Assert.AreEqual(0, context.Controls.Count);
         }
     }

@@ -1,10 +1,10 @@
 ﻿/**************************************************************************
  *                                                                        *
- *  File:        UnitTestPlaylistState.cs                                 *
+ *  File:        UnitTestEditPlaylistState.cs                             *
  *  Copyright:   (c) 2023, Ganea Luiza-Andreea                            *
  *  E-mail:      luiza-andreea.ganea@student.tuiasi.ro                    *
  *  Description: Clasa destinata testarii unitatilor clasei               *
- *              PlaylistState.cs                                          *
+ *              EditPlaylistState.cs                                      *
  *                                                                        *
  *  This program is free software; you can redistribute it and/or modify  *
  *  it under the terms of the GNU General Public License as published by  *
@@ -15,50 +15,53 @@
  *                                                                        *
  **************************************************************************/
 
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StateChange;
+using System;
 
 namespace UnitTestProiectIP
 {
     [TestClass]
-    public class UnitTestPlaylistState
+    public class UnitTestEditPlaylistState
     {
         /// <summary>
-        /// Testarea starii curente (PlaylistState)
+        /// Testarea starii curente (EditPlaylistState)
         /// </summary>
         [TestMethod]
-        public void HandlePlaylistStateTrue()
+        public void HandleEditPlaylistStateTrue()
         {
-            PlaylistState playlistState = new PlaylistState();
+            EditPlaylistState editPlaylistState = new EditPlaylistState();
             Context context = new Context();
 
-            context.StateNumber = MP3PlayerStates.PlaylistState;
+            context.StateNumber = MP3PlayerStates.EditPlaylistState;
 
-            bool result = playlistState.Handle(context);
+            bool result = editPlaylistState.Handle(context);
 
             Assert.IsTrue(result);
-            Assert.AreEqual(4, context.Controls.Count);
+            Assert.AreEqual(5, context.Controls.Count);
         }
+
 
         //Testarea schimbarii starii curente:
 
         /// <summary>
-        /// Testarea trecerii din starea curenta in starea SingleFileState. 
+        /// Testarea trecerii din starea curenta in starea PlaylistState. 
         /// Testarea tipului variabilei State a contextului
         /// Testarea numarului de controale din context
         /// </summary>
         [TestMethod]
-        public void HandlePlaylistStateFalseSingleFileState()
+        public void HandleEditPlaylistStateFalsePlaylistState()
         {
-            PlaylistState playlistState = new PlaylistState();
+            EditPlaylistState editPlaylistState = new EditPlaylistState();
             Context context = new Context();
 
-            context.StateNumber = MP3PlayerStates.SingleFileState;
+            context.StateNumber = MP3PlayerStates.PlaylistState;
 
-            bool result = playlistState.Handle(context);
+            bool result = editPlaylistState.Handle(context);
 
             Assert.IsFalse(result);
-            Assert.IsInstanceOfType(context.State, typeof(SingleFileState));
+            Assert.IsInstanceOfType(context.State, typeof(PlaylistState));
             Assert.AreEqual(0, context.Controls.Count);
         }
 
@@ -68,14 +71,14 @@ namespace UnitTestProiectIP
         /// Testarea numarului de controale din context
         /// </summary>
         [TestMethod]
-        public void HandlePlaylistStateFalseMakePlaylistState()
+        public void HandleEditPlaylistStateFalseMakePlaylistState()
         {
-            PlaylistState playlistState = new PlaylistState();
+            EditPlaylistState editPlaylistState = new EditPlaylistState();
             Context context = new Context();
 
             context.StateNumber = MP3PlayerStates.MakePlaylistState;
 
-            bool result = playlistState.Handle(context);
+            bool result = editPlaylistState.Handle(context);
 
             Assert.IsFalse(result);
             Assert.IsInstanceOfType(context.State, typeof(MakePlaylistState));
@@ -88,14 +91,14 @@ namespace UnitTestProiectIP
         /// Testarea numarului de controale din context
         /// </summary>
         [TestMethod]
-        public void HandlePlaylistStateFalseRadioState()
+        public void HandleEditPlaylistStateFalseRadioState()
         {
-            PlaylistState playlistState = new PlaylistState();
+            EditPlaylistState editPlaylistState = new EditPlaylistState();
             Context context = new Context();
 
             context.StateNumber = MP3PlayerStates.RadioState;
 
-            bool result = playlistState.Handle(context);
+            bool result = editPlaylistState.Handle(context);
 
             Assert.IsFalse(result);
             Assert.IsInstanceOfType(context.State, typeof(RadioState));
@@ -103,22 +106,22 @@ namespace UnitTestProiectIP
         }
 
         /// <summary>
-        /// Testarea trecerii din starea curenta in starea EditPlaylistState. 
+        /// Testarea trecerii din starea curenta in starea SingleFileState. 
         /// Testarea tipului variabilei State a contextului
         /// Testarea numarului de controale din context
         /// </summary>
         [TestMethod]
-        public void HandlePlaylistStateFalseEditPlaylistState()
+        public void HandleEditPlaylistStateFalseSingleFileState()
         {
-            PlaylistState playlistState = new PlaylistState();
+            EditPlaylistState editPlaylistState = new EditPlaylistState();
             Context context = new Context();
 
-            context.StateNumber = MP3PlayerStates.EditPlaylistState;
+            context.StateNumber = MP3PlayerStates.SingleFileState;
 
-            bool result = playlistState.Handle(context);
+            bool result = editPlaylistState.Handle(context);
 
             Assert.IsFalse(result);
-            Assert.IsInstanceOfType(context.State, typeof(EditPlaylistState));
+            Assert.IsInstanceOfType(context.State, typeof(SingleFileState));
             Assert.AreEqual(0, context.Controls.Count);
         }
     }

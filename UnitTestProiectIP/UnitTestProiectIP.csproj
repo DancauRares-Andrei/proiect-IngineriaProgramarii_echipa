@@ -50,6 +50,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UnitTestEditPlaylistState.cs" />
     <Compile Include="UnitTestRadioState.cs" />
     <Compile Include="UnitTestMP3Player.cs" />
     <Compile Include="UnitTestContext.cs" />
