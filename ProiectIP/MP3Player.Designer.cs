@@ -37,22 +37,24 @@ namespace ProiectIP
             this.deschiderePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iesireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.radioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.editarePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
             // 
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.operatiiToolStripMenuItem,
             this.radioToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(834, 24);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip.Size = new System.Drawing.Size(1251, 35);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -60,55 +62,64 @@ namespace ProiectIP
             // 
             this.operatiiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deschidereFisierToolStripMenuItem,
-            this.deschiderePlaylistToolStripMenuItem,
             this.crearePlaylistToolStripMenuItem,
-            this.iesireToolStripMenuItem,
-            this.editarePlaylistToolStripMenuItem});
+            this.deschiderePlaylistToolStripMenuItem,
+            this.editarePlaylistToolStripMenuItem,
+            this.iesireToolStripMenuItem});
             this.operatiiToolStripMenuItem.Name = "operatiiToolStripMenuItem";
-            this.operatiiToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.operatiiToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
             this.operatiiToolStripMenuItem.Text = "Meniu";
             this.operatiiToolStripMenuItem.Click += new System.EventHandler(this.operatiiToolStripMenuItem_Click);
             // 
             // deschidereFisierToolStripMenuItem
             // 
             this.deschidereFisierToolStripMenuItem.Name = "deschidereFisierToolStripMenuItem";
-            this.deschidereFisierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deschidereFisierToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.deschidereFisierToolStripMenuItem.Text = "Deschidere fisier";
             this.deschidereFisierToolStripMenuItem.Click += new System.EventHandler(this.deschidereFisierToolStripMenuItem_Click);
             // 
             // deschiderePlaylistToolStripMenuItem
             // 
             this.deschiderePlaylistToolStripMenuItem.Name = "deschiderePlaylistToolStripMenuItem";
-            this.deschiderePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deschiderePlaylistToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.deschiderePlaylistToolStripMenuItem.Text = "Deschidere playlist";
             this.deschiderePlaylistToolStripMenuItem.Click += new System.EventHandler(this.deschiderePlaylistToolStripMenuItem_Click);
             // 
             // crearePlaylistToolStripMenuItem
             // 
             this.crearePlaylistToolStripMenuItem.Name = "crearePlaylistToolStripMenuItem";
-            this.crearePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.crearePlaylistToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.crearePlaylistToolStripMenuItem.Text = "Creare playlist";
             this.crearePlaylistToolStripMenuItem.Click += new System.EventHandler(this.crearePlaylistToolStripMenuItem_Click);
             // 
             // iesireToolStripMenuItem
             // 
             this.iesireToolStripMenuItem.Name = "iesireToolStripMenuItem";
-            this.iesireToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iesireToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.iesireToolStripMenuItem.Text = "Iesire";
             this.iesireToolStripMenuItem.Click += new System.EventHandler(this.iesireToolStripMenuItem_Click);
+            // 
+            // editarePlaylistToolStripMenuItem
+            // 
+            this.editarePlaylistToolStripMenuItem.Name = "editarePlaylistToolStripMenuItem";
+            this.editarePlaylistToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.editarePlaylistToolStripMenuItem.Text = "Editare playlist";
+            this.editarePlaylistToolStripMenuItem.Click += new System.EventHandler(this.editarePlaylistToolStripMenuItem_Click);
             // 
             // radioToolStripMenuItem
             // 
             this.radioToolStripMenuItem.Name = "radioToolStripMenuItem";
-            this.radioToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.radioToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
             this.radioToolStripMenuItem.Text = "Radio";
             this.radioToolStripMenuItem.Click += new System.EventHandler(this.radioToolStripMenuItem_Click);
             // 
             // groupBox
             // 
-            this.groupBox.Location = new System.Drawing.Point(13, 28);
+            this.groupBox.Location = new System.Drawing.Point(20, 43);
+            this.groupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(809, 410);
+            this.groupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox.Size = new System.Drawing.Size(1214, 631);
             this.groupBox.TabIndex = 2;
             this.groupBox.TabStop = false;
             // 
@@ -116,22 +127,16 @@ namespace ProiectIP
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // editarePlaylistToolStripMenuItem
-            // 
-            this.editarePlaylistToolStripMenuItem.Name = "editarePlaylistToolStripMenuItem";
-            this.editarePlaylistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editarePlaylistToolStripMenuItem.Text = "Editare playlist";
-            this.editarePlaylistToolStripMenuItem.Click += new System.EventHandler(this.editarePlaylistToolStripMenuItem_Click);
-            // 
             // MP3Player
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 450);
+            this.ClientSize = new System.Drawing.Size(1251, 692);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.menuStrip);
             this.HelpButton = true;
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "MP3Player";
             this.Text = "RhythmIt";
