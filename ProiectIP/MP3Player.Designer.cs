@@ -30,14 +30,15 @@ namespace ProiectIP
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MP3Player));
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.operatiiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deschidereFisierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deschiderePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iesireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deschiderePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iesireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.radioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
@@ -47,79 +48,102 @@ namespace ProiectIP
             // 
             // menuStrip
             // 
+            this.menuStrip.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuStrip.BackgroundImage")));
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.operatiiToolStripMenuItem,
             this.radioToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStrip.Size = new System.Drawing.Size(1251, 35);
+            this.menuStrip.Size = new System.Drawing.Size(853, 32);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
             // operatiiToolStripMenuItem
             // 
+            this.operatiiToolStripMenuItem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("operatiiToolStripMenuItem.BackgroundImage")));
             this.operatiiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deschidereFisierToolStripMenuItem,
             this.crearePlaylistToolStripMenuItem,
             this.deschiderePlaylistToolStripMenuItem,
             this.editarePlaylistToolStripMenuItem,
             this.iesireToolStripMenuItem});
+            this.operatiiToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("operatiiToolStripMenuItem.Image")));
+            this.operatiiToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.operatiiToolStripMenuItem.Name = "operatiiToolStripMenuItem";
-            this.operatiiToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
-            this.operatiiToolStripMenuItem.Text = "Meniu";
-            this.operatiiToolStripMenuItem.Click += new System.EventHandler(this.operatiiToolStripMenuItem_Click);
+            this.operatiiToolStripMenuItem.Size = new System.Drawing.Size(36, 28);
             // 
             // deschidereFisierToolStripMenuItem
             // 
+            this.deschidereFisierToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.deschidereFisierToolStripMenuItem.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deschidereFisierToolStripMenuItem.ForeColor = System.Drawing.Color.Navy;
+            this.deschidereFisierToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deschidereFisierToolStripMenuItem.Image")));
+            this.deschidereFisierToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.deschidereFisierToolStripMenuItem.Name = "deschidereFisierToolStripMenuItem";
-            this.deschidereFisierToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.deschidereFisierToolStripMenuItem.Text = "Deschidere fisier";
+            this.deschidereFisierToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.deschidereFisierToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.deschidereFisierToolStripMenuItem.Text = "Deschide fișier";
             this.deschidereFisierToolStripMenuItem.Click += new System.EventHandler(this.deschidereFisierToolStripMenuItem_Click);
-            // 
-            // deschiderePlaylistToolStripMenuItem
-            // 
-            this.deschiderePlaylistToolStripMenuItem.Name = "deschiderePlaylistToolStripMenuItem";
-            this.deschiderePlaylistToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.deschiderePlaylistToolStripMenuItem.Text = "Deschidere playlist";
-            this.deschiderePlaylistToolStripMenuItem.Click += new System.EventHandler(this.deschiderePlaylistToolStripMenuItem_Click);
             // 
             // crearePlaylistToolStripMenuItem
             // 
+            this.crearePlaylistToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.crearePlaylistToolStripMenuItem.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.crearePlaylistToolStripMenuItem.ForeColor = System.Drawing.Color.Navy;
+            this.crearePlaylistToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("crearePlaylistToolStripMenuItem.Image")));
             this.crearePlaylistToolStripMenuItem.Name = "crearePlaylistToolStripMenuItem";
-            this.crearePlaylistToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.crearePlaylistToolStripMenuItem.Text = "Creare playlist";
+            this.crearePlaylistToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.crearePlaylistToolStripMenuItem.Text = "Crează playlist";
             this.crearePlaylistToolStripMenuItem.Click += new System.EventHandler(this.crearePlaylistToolStripMenuItem_Click);
             // 
-            // iesireToolStripMenuItem
+            // deschiderePlaylistToolStripMenuItem
             // 
-            this.iesireToolStripMenuItem.Name = "iesireToolStripMenuItem";
-            this.iesireToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.iesireToolStripMenuItem.Text = "Iesire";
-            this.iesireToolStripMenuItem.Click += new System.EventHandler(this.iesireToolStripMenuItem_Click);
+            this.deschiderePlaylistToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.deschiderePlaylistToolStripMenuItem.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deschiderePlaylistToolStripMenuItem.ForeColor = System.Drawing.Color.Navy;
+            this.deschiderePlaylistToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deschiderePlaylistToolStripMenuItem.Image")));
+            this.deschiderePlaylistToolStripMenuItem.Name = "deschiderePlaylistToolStripMenuItem";
+            this.deschiderePlaylistToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.deschiderePlaylistToolStripMenuItem.Text = "Deschide playlist";
+            this.deschiderePlaylistToolStripMenuItem.Click += new System.EventHandler(this.deschiderePlaylistToolStripMenuItem_Click);
             // 
             // editarePlaylistToolStripMenuItem
             // 
+            this.editarePlaylistToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.editarePlaylistToolStripMenuItem.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editarePlaylistToolStripMenuItem.ForeColor = System.Drawing.Color.Navy;
+            this.editarePlaylistToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editarePlaylistToolStripMenuItem.Image")));
             this.editarePlaylistToolStripMenuItem.Name = "editarePlaylistToolStripMenuItem";
-            this.editarePlaylistToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.editarePlaylistToolStripMenuItem.Text = "Editare playlist";
+            this.editarePlaylistToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.editarePlaylistToolStripMenuItem.Text = "Editează playlist";
             this.editarePlaylistToolStripMenuItem.Click += new System.EventHandler(this.editarePlaylistToolStripMenuItem_Click);
+            // 
+            // iesireToolStripMenuItem
+            // 
+            this.iesireToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.iesireToolStripMenuItem.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iesireToolStripMenuItem.ForeColor = System.Drawing.Color.Navy;
+            this.iesireToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("iesireToolStripMenuItem.Image")));
+            this.iesireToolStripMenuItem.Name = "iesireToolStripMenuItem";
+            this.iesireToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.iesireToolStripMenuItem.Text = "Ieșire";
+            this.iesireToolStripMenuItem.Click += new System.EventHandler(this.iesireToolStripMenuItem_Click);
             // 
             // radioToolStripMenuItem
             // 
+            this.radioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("radioToolStripMenuItem.Image")));
             this.radioToolStripMenuItem.Name = "radioToolStripMenuItem";
-            this.radioToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
-            this.radioToolStripMenuItem.Text = "Radio";
+            this.radioToolStripMenuItem.Size = new System.Drawing.Size(36, 28);
             this.radioToolStripMenuItem.Click += new System.EventHandler(this.radioToolStripMenuItem_Click);
             // 
             // groupBox
             // 
-            this.groupBox.Location = new System.Drawing.Point(20, 43);
-            this.groupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox.BackColor = System.Drawing.Color.Navy;
+            this.groupBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox.BackgroundImage")));
+            this.groupBox.Location = new System.Drawing.Point(13, 35);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox.Size = new System.Drawing.Size(1214, 631);
+            this.groupBox.Size = new System.Drawing.Size(828, 419);
             this.groupBox.TabIndex = 2;
             this.groupBox.TabStop = false;
             // 
@@ -129,14 +153,16 @@ namespace ProiectIP
             // 
             // MP3Player
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1251, 692);
+            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.ClientSize = new System.Drawing.Size(853, 466);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.menuStrip);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "MP3Player";
             this.Text = "RhythmIt";

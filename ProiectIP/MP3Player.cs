@@ -78,15 +78,20 @@ namespace ProiectIP
                 else
                 {
                     groupBox.Controls.Clear();
+                    
                     if (_context.StateNumber == MP3PlayerStates.PlaylistState)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.StateNumber = MP3PlayerStates.SingleFileState;
                     _context.Request();
                     groupBox.Controls.Add(_context.Controls[0]);
+
                     _context.Controls[0].CreateControl();
+
+                    
                     ((AxWindowsMediaPlayer)_context.Controls[0]).settings.setMode("loop", true);
-                    _context.Controls[0].Location = new System.Drawing.Point(6, 27);
-                    _context.Controls[0].Size = new System.Drawing.Size(498, 368);
+                    _context.Controls[0].Location = new System.Drawing.Point(20, 27);
+                    _context.Controls[0].Size = new System.Drawing.Size(790, 370);
+
                     ((AxWindowsMediaPlayer)_context.Controls[0]).URL = Path.GetFullPath(openFileDialog.FileName);
                 }
             }
@@ -158,25 +163,33 @@ namespace ProiectIP
 
                     _context.StateNumber = MP3PlayerStates.PlaylistState;
                     _context.Request();
+
                     groupBox.Controls.Add(_context.Controls[0]);
                     groupBox.Controls.Add(_context.Controls[1]);
                     groupBox.Controls.Add(_context.Controls[2]);
                     groupBox.Controls.Add(_context.Controls[3]);
-                    _context.Controls[0].Location = new System.Drawing.Point(6, 27);
-                    _context.Controls[0].Size = new System.Drawing.Size(498, 368);
+                    _context.Controls[0].Location = new System.Drawing.Point(20, 27);
+                    _context.Controls[0].Size = new System.Drawing.Size(490, 368);
                     _context.Controls[1].Location = new System.Drawing.Point(531, 27);
-                    _context.Controls[1].Size = new System.Drawing.Size(200, 368);
+                    _context.Controls[1].Size = new System.Drawing.Size(280, 339);
+                    _context.Controls[1].BackColor = Color.Navy;
+                    _context.Controls[1].ForeColor = Color.Aqua;
+                    _context.Controls[1].Font = new Font("Georgia", 10);
+
                     ((ListBox)_context.Controls[1]).HorizontalScrollbar = true;
                     _context.Controls[2].Text = "Random";
-                    _context.Controls[2].Size = new System.Drawing.Size(66, 17);
-                    _context.Controls[2].Location = new System.Drawing.Point(740, 27);
+                    _context.Controls[2].Size = new System.Drawing.Size(80, 27);
+                    _context.Controls[2].Location = new System.Drawing.Point(531, 366);
+                    _context.Controls[2].Font = new Font("Georgia", 10);
                     _context.Controls[3].Text = "Loop";
+                    
                     ((CheckBox)_context.Controls[3]).CheckedChanged += PlaylistLoop_CheckedChanged;
-                    _context.Controls[3].Size = new System.Drawing.Size(66, 17);
-                    _context.Controls[3].Location = new System.Drawing.Point(740, 47);
+                    _context.Controls[3].Size = new System.Drawing.Size(80, 27);
+                    _context.Controls[3].Location = new System.Drawing.Point(732, 366);
+                    _context.Controls[3].Font = new Font("Georgia", 10);
 
-                    // Setarea DataSource-ului pentru ListBox
-                    ((ListBox)_context.Controls[1]).DataSource = files;
+                   // Setarea DataSource-ului pentru ListBox
+                   ((ListBox)_context.Controls[1]).DataSource = files;
 
                     // Setarea DisplayMember-ului si ValueMember-ului pentru ListBox
                     ((ListBox)_context.Controls[1]).DisplayMember = "FileName";
@@ -332,6 +345,7 @@ namespace ProiectIP
                 }
                 InitializeMakePlaylistContext(_context);
                 groupBox.Controls.Add(_context.Controls[0]);
+
                 groupBox.Controls.Add(_context.Controls[1]);
                 groupBox.Controls.Add(_context.Controls[2]);
 
@@ -389,22 +403,28 @@ namespace ProiectIP
         {
             context.StateNumber = MP3PlayerStates.MakePlaylistState;
             context.Request();
-            context.Controls[0].Text = "Adaugă fișier";
-            context.Controls[1].Text = "Salvează playlist";
+            context.Controls[0].Text = "Adaugă\nfișier";
+            context.Controls[1].Text = "Salvează\nplaylist";
             context.Controls[2].Enabled = false;
-            context.Controls[0].Location = new System.Drawing.Point(30, 30);
-            context.Controls[1].Location = new System.Drawing.Point(120, 30);
-            context.Controls[2].Location = new System.Drawing.Point(30, 60);
+            context.Controls[0].Location = new System.Drawing.Point(700, 130);
+            context.Controls[0].Size = new System.Drawing.Size(100, 50);
+            context.Controls[2].BackColor = Color.Navy;
+            context.Controls[2].ForeColor = Color.Aqua;
+            context.Controls[2].Font = new Font("Georgia", 8);
+
+            context.Controls[1].Location = new System.Drawing.Point(700, 190);
+            context.Controls[1].Size = new System.Drawing.Size(100, 50);
+            context.Controls[0].Font = new Font("Georgia", 8);
+
+            context.Controls[1].Font = new Font("Georgia", 8);
+            context.Controls[2].Location = new System.Drawing.Point(20, 27);
             ((TextBox)context.Controls[2]).Multiline = true;
-            ((TextBox)context.Controls[2]).Size = new System.Drawing.Size(770, 300);
+            ((TextBox)context.Controls[2]).Size = new System.Drawing.Size(640, 368);
             ((Button)context.Controls[0]).Click += AddButtonClick;
             ((Button)context.Controls[1]).Click += SaveButtonClick;
-        }
-
-        private void operatiiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
         }
+
         /// <summary>
         /// Functie ce initializeaza contextul pentru starea Radio
         /// </summary>
@@ -420,7 +440,7 @@ namespace ProiectIP
             context.Controls[0].Size = new System.Drawing.Size(600, 200);
 
             context.Controls[1].Location = new System.Drawing.Point(100, 300);
-            context.Controls[1].Size = new System.Drawing.Size(150, 50);
+            context.Controls[1].Size = new System.Drawing.Size(70, 30);
 
             context.Controls[2].Location = new System.Drawing.Point(550, 300);
             context.Controls[2].Size = new System.Drawing.Size(150, 50);
@@ -502,8 +522,23 @@ namespace ProiectIP
                 groupBox.Controls.Add(_context.Controls[0]);
                 groupBox.Controls.Add(_context.Controls[1]);
                 groupBox.Controls.Add(_context.Controls[2]);
+               ((Button)_context.Controls[1]).Size = new System.Drawing.Size(100, 50);
+
+               ((Button)_context.Controls[2]).Size = new System.Drawing.Size(100, 50);
+                ((Button)_context.Controls[1]).Location = new System.Drawing.Point(700, 130);
+
+                ((Button)_context.Controls[2]).Location = new System.Drawing.Point(700, 190);
 
                 ((ListBox)_context.Controls[0]).DataSource = radioStationList;
+                ((ListBox)_context.Controls[0]).Size = new System.Drawing.Size(640, 368);
+                ((ListBox)_context.Controls[0]).Location = new System.Drawing.Point(20, 30);
+                ((Button)_context.Controls[1]).Font = new Font("Georgia", 8);
+                ((Button)_context.Controls[2]).Font = new Font("Georgia", 8);
+
+                ((ListBox)_context.Controls[0]).BackColor = Color.Navy;
+                ((ListBox)_context.Controls[0]).ForeColor = Color.Aqua;
+                ((ListBox)_context.Controls[0]).Font = new Font("Georgia", 8);
+
                 ((ListBox)_context.Controls[0]).DisplayMember = "Name";
                 ((ListBox)_context.Controls[0]).SelectedIndex = 1;
                 ((ListBox)_context.Controls[0]).SelectedIndexChanged += (radioStationItem, args) =>
@@ -544,8 +579,8 @@ namespace ProiectIP
                     groupBox.Controls.Add(_context.Controls[4]);
 
 
-                _context.Controls[0].Location = new System.Drawing.Point(6, 27);
-                    _context.Controls[0].Size = new System.Drawing.Size(498, 368);
+                _context.Controls[0].Location = new System.Drawing.Point(20, 27);
+                    _context.Controls[0].Size = new System.Drawing.Size(490, 368);
                     List<string> melodii = new List<string>();
                     StreamReader sr = new StreamReader(Path.GetFullPath(openFileDialog.FileName));
                     string[] lvls = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
@@ -553,8 +588,9 @@ namespace ProiectIP
                     for (int i = 0; i < lvls.Length; i++)
                         melodii.Add(lvls[i]);
                     _context.Controls[1].Location = new System.Drawing.Point(531, 27);
-                    _context.Controls[1].Size = new System.Drawing.Size(200, 368);
+                    _context.Controls[1].Size = new System.Drawing.Size(280, 339);
                     ((ListBox)_context.Controls[1]).HorizontalScrollbar = true;
+                
                     // Crearea listei cu perechi cheie-valoare (calea completa la fisier - numele fisierului)
                     var files = melodii.Select(path => new { Path = path, FileName = Path.GetFileName(path) }).ToList();
 
@@ -564,23 +600,30 @@ namespace ProiectIP
                     // Setarea DisplayMember-ului si ValueMember-ului pentru ListBox
                     ((ListBox)_context.Controls[1]).DisplayMember = "FileName";
                     ((ListBox)_context.Controls[1]).ValueMember = "Path";
+                ((ListBox)_context.Controls[1]).BackColor = Color.Navy;
+                ((ListBox)_context.Controls[1]).ForeColor = Color.Aqua;
+                ((ListBox)_context.Controls[1]).Font = new Font("Georgia", 8);
 
-
-                   ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
+                  ((ListBox)_context.Controls[1]).SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
                    ((AxWindowsMediaPlayer)_context.Controls[0]).URL = ((dynamic)((ListBox)_context.Controls[1]).SelectedItem).Path;
                    ((AxWindowsMediaPlayer)_context.Controls[0]).PlayStateChange += axWindowsMediaPlayer_PlayStateChange;
 
-                    _context.Controls[2].Text = "Add";
-                    _context.Controls[2].Size = new System.Drawing.Size(66, 20);
-                    _context.Controls[2].Location = new System.Drawing.Point(740, 27);
+                    _context.Controls[2].Text = "Adaugă\n";
+                    _context.Controls[2].Size = new System.Drawing.Size(70, 30);
+                    _context.Controls[2].Location = new System.Drawing.Point(531, 366);
+                _context.Controls[2].Font = new Font("Georgia", 10);
                 ((Button)_context.Controls[2]).Click += AddButtonClickEditPlaylist;
-                _context.Controls[3].Text = "Delete";
-                    _context.Controls[3].Size = new System.Drawing.Size(66, 20);
-                    _context.Controls[3].Location = new System.Drawing.Point(740, 55);
+                _context.Controls[3].Text = "Șterge";
+                    _context.Controls[3].Size = new System.Drawing.Size(70, 30);
+                    _context.Controls[3].Location = new System.Drawing.Point(640, 366);
+                _context.Controls[3].Font = new Font("Georgia", 10);
+
                 ((Button)_context.Controls[3]).Click += RemoveButtonClickEditPlaylist;
-                _context.Controls[4].Text = "Save";
-                _context.Controls[4].Size = new System.Drawing.Size(66, 20);
-                _context.Controls[4].Location = new System.Drawing.Point(740, 83);
+                _context.Controls[4].Text = "Salvează";
+                _context.Controls[4].Size = new System.Drawing.Size(70, 30);
+                _context.Controls[4].Location = new System.Drawing.Point(741, 366);
+                _context.Controls[4].Font = new Font("Georgia", 10);
+
                 ((Button)_context.Controls[4]).Click += SaveButtonClickEditPlaylist;
 
             }
