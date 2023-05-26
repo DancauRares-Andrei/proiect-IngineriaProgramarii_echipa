@@ -727,5 +727,10 @@ namespace ProiectIP
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void ajutorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
