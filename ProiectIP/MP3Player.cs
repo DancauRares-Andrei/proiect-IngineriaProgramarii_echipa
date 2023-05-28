@@ -78,8 +78,8 @@ namespace ProiectIP
                 else
                 {
                     groupBox.Controls.Clear();
-                    
-                    if (_context.StateNumber == MP3PlayerStates.PlaylistState)
+
+                    if (_context.StateNumber == MP3PlayerStates.SingleFileState || _context.StateNumber == MP3PlayerStates.PlaylistState || _context.StateNumber == MP3PlayerStates.EditPlaylistState)
                         ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                     _context.StateNumber = MP3PlayerStates.SingleFileState;
                     _context.Request();
@@ -158,8 +158,8 @@ namespace ProiectIP
                 else
                 {
                     groupBox.Controls.Clear();
-                    if (_context.StateNumber == MP3PlayerStates.SingleFileState)
-                        ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
+                    if(_context.StateNumber==MP3PlayerStates.SingleFileState || _context.StateNumber==MP3PlayerStates.EditPlaylistState)
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
 
                     _context.StateNumber = MP3PlayerStates.PlaylistState;
                     _context.Request();
@@ -497,7 +497,7 @@ namespace ProiectIP
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void radioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        { 
             //Adaugam intr-o lista toate posturile de radio.
             List<RadioStation> radioStationList = new List<RadioStation>
             {
@@ -516,6 +516,8 @@ namespace ProiectIP
 
             try
             {
+                if(_context.StateNumber==MP3PlayerStates.SingleFileState || _context.StateNumber==MP3PlayerStates.PlaylistState || _context.StateNumber==MP3PlayerStates.EditPlaylistState)
+                    ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
                 _context.StateNumber = MP3PlayerStates.RadioState;
                 _context.Request();
                 InitializeRadioContext(_context);
@@ -565,9 +567,9 @@ namespace ProiectIP
                     this.waveOut.Stop();
                 }             
                     groupBox.Controls.Clear();
-                if (_context.StateNumber == MP3PlayerStates.SingleFileState || _context.StateNumber == MP3PlayerStates.PlaylistState || _context.StateNumber == MP3PlayerStates.RadioState)     
+                if (_context.StateNumber == MP3PlayerStates.SingleFileState || _context.StateNumber == MP3PlayerStates.PlaylistState || _context.StateNumber == MP3PlayerStates.EditPlaylistState)
                     ((AxWindowsMediaPlayer)_context.Controls[0]).Ctlcontrols.stop();
-                    openFileDialog.Filter = "Playlist(*.txt)|*.txt";
+                openFileDialog.Filter = "Playlist(*.txt)|*.txt";
                     if (openFileDialog.ShowDialog() != DialogResult.OK)
                     return;
                     _context.StateNumber = MP3PlayerStates.EditPlaylistState;
