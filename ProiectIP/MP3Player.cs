@@ -755,7 +755,8 @@ namespace ProiectIP
         /// <param name="e"></param>
         private void ajutorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("RhythmIT.chm");
+            //Deschid fisierul help daca s-a apasat in meniul ajutor
+            System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + @"\TuneWave.chm");
         }
     }
 }
