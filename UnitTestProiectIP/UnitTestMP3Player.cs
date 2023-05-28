@@ -40,7 +40,9 @@ namespace UnitTestProiectIP
             Assert.AreEqual(3, context.Controls.Count);
             Assert.AreEqual(MP3PlayerStates.MakePlaylistState, context.StateNumber);
         }
-
+        /// <summary>
+        /// Testarea metodei de initializare a radioului
+        /// </summary>
         [TestMethod]
         public void TestInitializeRadioContext()
         {

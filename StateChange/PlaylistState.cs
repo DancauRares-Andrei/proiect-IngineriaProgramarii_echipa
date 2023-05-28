@@ -1,11 +1,4 @@
-﻿using AxWMPLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-/**************************************************************************
+﻿/**************************************************************************
  *                                                                        *
  *  File:        PlaylistState.cs                                         *
  *  Copyright:   (c) 2023, Dancău Rareș-Andrei                            *
@@ -21,7 +14,13 @@ using System.Windows.Forms;
  *  PURPOSE. See the GNU General Public License for more details.         *
  *                                                                        *
  **************************************************************************/
-
+using AxWMPLib;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 namespace StateChange
 {
     /// <summary>
